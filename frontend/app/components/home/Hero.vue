@@ -37,27 +37,25 @@
         <p
           class="text-orange-400 text-xs font-bold tracking-[0.18em] uppercase mb-5"
         >
-          Business Advisory &amp; Corporate Consulting
+          Business Advisory &amp; Consulting
         </p>
 
         <!-- H1 — Fraunces serif, large, restrained -->
         <h1
           class="font-heading font-bold text-white leading-[1.08] text-4xl md:text-5xl lg:text-[3.4rem] mb-6"
         >
-          Build Smarter,<br class="hidden sm:block" />
-          Grow Faster <br />
-          <em class="not-italic text-orange-400">Trusted Experts</em
-          ><br class="hidden sm:block" />
-          By Your Side.
+          <br class="hidden sm:block" />
+          Engage Trusted<br />
+          <em class="not-italic text-orange-400">Partners</em>
         </h1>
 
         <!-- Subheadline -->
         <p
           class="text-white/75 text-base lg:text-lg leading-relaxed mb-10 max-w-xl"
         >
-          Willcoll Agencies helps Kenyan SMEs, corporates, and organizations
-          achieve compliance, manage risk, and drive growth with Big Four
-          expertise and personalized service.
+          Willcoll Agencies helps individuals, SMEs, Corporates, and
+          organisations achieve compliance, manage risks, and drive growth with
+          expertise and personalized advice
         </p>
 
         <!-- CTAs -->
@@ -76,8 +74,14 @@
     <div
       class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60"
     >
-      <span class="text-white text-xs tracking-widest uppercase">Scroll</span>
-      <div class="w-px h-10 bg-white/50" />
+      <span class="text-white text-xs tracking-widest uppercase animate-pulse"
+        >Scroll</span
+      >
+      <div class="w-px h-10 bg-white/50 overflow-hidden relative">
+        <div
+          class="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-line"
+        />
+      </div>
     </div>
   </section>
 </template>

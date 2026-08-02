@@ -31,11 +31,18 @@
           <div class="mt-6 space-y-1.5 text-sm text-gray-500">
             <p>10th Floor, Pension Towers, Loita Street</p>
             <p>P.O. Box 24799 - 00502, Nairobi, Kenya</p>
+
             <a
               href="tel:0722550893"
               class="block hover:text-orange-500 transition-colors font-medium text-white mt-2"
             >
               0722 550 893
+            </a>
+            <a
+              href="mailto:info@willcoll.co.ke"
+              class="block hover:text-orange-500 transition-colors font-medium text-white"
+            >
+              info@willcoll.co.ke
             </a>
           </div>
         </div>

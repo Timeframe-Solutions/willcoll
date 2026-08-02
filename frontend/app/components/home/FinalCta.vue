@@ -31,8 +31,8 @@
       <p
         class="text-white/60 text-base lg:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
       >
-        Whether it's compliance, risk, strategy, or your next transaction — book
-        a consultation and speak directly with our advisory team.
+        Whether it's compliance, risk, strategy, or your next transaction book a
+        consultation and speak directly with our advisory team.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <SharedButton to="/contact" size="lg">

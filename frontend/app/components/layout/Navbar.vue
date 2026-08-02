@@ -13,7 +13,7 @@
   />
 
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    class="fixed top-0 left-0 right-0 z-[80] transition-all duration-300"
     :class="[
       isScrolled
         ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3'
@@ -193,9 +193,9 @@
       <!-- Mobile Hamburger Button -->
       <button
         @click="toggleMobileMenu"
-        class="lg:hidden p-2 focus:outline-none z-50 transition-colors"
+        class="relative lg:hidden p-2 focus:outline-none z-50 transition-colors"
         :class="isScrolled ? 'text-ink-900' : 'text-white'"
-        :aria-expanded="isMobileMenuOpen.toString()"
+        :aria-expanded="isMobileMenuOpen"
         aria-label="Toggle menu"
       >
         <Icon
@@ -204,7 +204,9 @@
         />
       </button>
     </div>
+  </header>
 
+  <Teleport to="body">
     <!-- Mobile Drawer Overlay -->
     <transition
       enter-active-class="transition duration-300 ease-out"
@@ -216,7 +218,7 @@
     >
       <div
         v-show="isMobileMenuOpen"
-        class="fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-40 lg:hidden"
+        class="fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-[60] lg:hidden"
         @click="isMobileMenuOpen = false"
       />
     </transition>
@@ -232,7 +234,7 @@
     >
       <div
         v-show="isMobileMenuOpen"
-        class="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-white shadow-xl z-40 p-6 pt-24 flex flex-col justify-between overflow-y-auto lg:hidden"
+        class="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-white shadow-xl z-[70] p-6 pt-24 flex flex-col justify-between overflow-y-auto lg:hidden"
       >
         <div class="space-y-6">
           <NuxtLink
@@ -325,7 +327,7 @@
         </div>
       </div>
     </transition>
-  </header>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
