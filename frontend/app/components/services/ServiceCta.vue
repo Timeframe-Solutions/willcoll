@@ -6,39 +6,49 @@ defineProps<{
 </script>
 
 <template>
-  <section class="py-24 lg:py-32 bg-ink-900 text-center text-white relative overflow-hidden">
-    <!-- Grid overlay and blob accent for visual depth -->
-    <div class="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" pointer-events-none></div>
-    <div 
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35rem] h-[35rem] bg-orange-500/10 pointer-events-none"
-      style="border-radius: var(--radius-blob);"
-    ></div>
+  <section class="relative py-24 lg:py-32 overflow-hidden">
+    <!-- Background image with dark overlay -->
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-fixed"
+      style="background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=80')"
+      aria-hidden="true"
+    />
+    <div class="absolute inset-0 bg-ink-900/88" aria-hidden="true" />
+    <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" aria-hidden="true" />
 
-    <div class="max-w-3xl mx-auto px-6 lg:px-10 relative z-10">
-      <span class="inline-flex items-center gap-1.5 bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-[var(--radius-sm)] mb-6">
-        <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-        Get Started
-      </span>
-      <h2 class="font-heading text-3xl lg:text-4.5xl text-white mb-6 leading-tight font-bold tracking-tight">
-        Ready to Solve this Business Challenge?
+    <!-- Blob accents -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-orange-500/10 blur-3xl pointer-events-none"
+      aria-hidden="true"
+    />
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <!-- Label -->
+      <div class="inline-flex items-center gap-2 bg-orange-500/15 border border-orange-500/25 text-orange-300 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+        Ready to Get Started
+      </div>
+
+      <h2 class="font-heading text-3xl lg:text-4xl text-white mb-5 leading-tight font-bold">
+        Ready to Solve This Business Challenge?
       </h2>
       <p class="text-lg text-gray-300 mb-10 max-w-xl mx-auto font-light leading-relaxed">
-        Let's discuss how we can help your organization implement a practical framework for <span class="text-orange-400 font-semibold">{{ serviceName }}</span>.
+        Let's build a practical framework for
+        <span class="text-orange-300 font-semibold">{{ serviceName }}</span>
+        tailored to your organization.
       </p>
-      
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-        <SharedButton 
-          to="/contact" 
-          size="lg"
-          class="w-full sm:w-auto"
-        >
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <SharedButton to="/contact" size="lg">
           {{ ctaText }}
         </SharedButton>
-        <a 
-          href="tel:0722550893" 
-          class="text-gray-300 hover:text-white font-semibold text-sm transition-colors flex items-center gap-2"
+        <a
+          href="tel:0722550893"
+          class="inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium text-sm transition-colors px-4 py-3"
         >
-          <Icon name="lucide:phone" class="w-4 h-4 text-orange-500" />
+          <span class="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center">
+            <Icon name="lucide:phone" class="w-4 h-4 text-orange-400" />
+          </span>
           Call Managing Partner: 0722 550 893
         </a>
       </div>

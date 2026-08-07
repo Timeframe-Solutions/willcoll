@@ -28,8 +28,10 @@
             <Icon name="lucide:user" class="w-5 h-5 text-gray-400" />
           </div>
           <div class="text-left">
-            <p class="text-sm font-bold text-ink-900">Michael Wahinga</p>
-            <p class="text-xs text-gray-500">Director, Golden Books Limited</p>
+            <p class="text-sm font-bold text-ink-900">Michael Oduor</p>
+            <p class="text-xs text-gray-500">
+              Director, TransBorder BookShop Limited
+            </p>
           </div>
         </div>
       </div>

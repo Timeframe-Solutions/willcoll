@@ -13,6 +13,8 @@ export interface Service {
   whoIsFor: string;
   ctaText: string;
   to: string;
+  bgImage: string;
+  accentColor: string;
   subServices: SubService[];
 }
 
@@ -24,14 +26,16 @@ export const useServices = () => {
       subhead:
         "Strategic guidance for acquiring and protecting assets with confidence.",
       outcome:
-        "Professional advice to help individuals, SMEs, corporates and organizations legally acquire and structure ownership of assets.",
+        "Professional advice to help individuals, SMEs, and organizations legally acquire and structure asset ownership.",
       description:
-        "We provide strategic advisory services to help clients acquire, structure, manage and safeguard different types of assets. Whether purchasing real estate, business assets, equipment, investments or other valuable property, we help ensure ownership decisions are legally compliant, financially sound and aligned with long-term objectives.",
+        "We help clients acquire, structure, manage and safeguard valuable assets. From real estate to business investments, every decision is legally compliant, financially sound and aligned with long-term objectives.",
       icon: "lucide:landmark",
       whoIsFor:
         "Individuals, SMEs, corporates, investors and organizations acquiring or managing assets.",
       ctaText: "Book an Asset Ownership Consultation",
       to: "/services/transaction-advisory",
+      bgImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=80",
+      accentColor: "#F37321",
       subServices: [
         {
           name: "Asset Acquisition Advisory",
@@ -63,16 +67,18 @@ export const useServices = () => {
       id: "project-risk-mitigation",
       name: "Project Risk Mitigation",
       subhead:
-        "Helping organizations anticipate challenges before they become costly problems.",
+        "Anticipate challenges before they become costly problems.",
       outcome:
         "Risk identification, planning and mitigation strategies throughout the project lifecycle.",
       description:
-        "Projects succeed when risks are identified early and managed proactively. We help organizations plan ahead by identifying potential threats, evaluating their impact and developing practical mitigation strategies that reduce delays, cost overruns and operational surprises.",
+        "Projects succeed when risks are identified early. We help organizations plan ahead by spotting threats, evaluating impact and developing mitigation strategies that reduce delays, cost overruns and operational surprises.",
       icon: "lucide:shield-check",
       whoIsFor:
         "Businesses, NGOs, public sector organizations and project managers delivering projects.",
       ctaText: "Book a Project Risk Consultation",
       to: "/services/risk-assurance",
+      bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1800&q=80",
+      accentColor: "#1E8E5A",
       subServices: [
         {
           name: "Project Risk Assessment",
@@ -106,12 +112,14 @@ export const useServices = () => {
       outcome:
         "Planning, coordination and production support for corporate and social events.",
       description:
-        "We provide strategic advice and production support for live events from concept to execution. Whether planning conferences, product launches, corporate functions or celebrations, we coordinate every stage to ensure seamless delivery and a memorable experience.",
+        "From concept to execution, we coordinate every stage of your event — conferences, product launches, corporate functions and celebrations — ensuring seamless delivery and a lasting impression.",
       icon: "lucide:sparkles",
       whoIsFor:
         "Corporates, organizations, institutions and individuals planning live events.",
       ctaText: "Book an Event Production Consultation",
       to: "/services/corporate-events-brand-activation",
+      bgImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+      accentColor: "#B8862E",
       subServices: [
         {
           name: "Corporate Events",
@@ -140,16 +148,18 @@ export const useServices = () => {
       id: "advertising-airtime-space",
       name: "Advertising Airtime & Space",
       subhead:
-        "Helping organizations invest in the right advertising channels.",
+        "Invest in the right advertising channels with expert guidance.",
       outcome:
         "Expert advice on purchasing advertising airtime and physical advertising space.",
       description:
-        "We advise organizations on planning and purchasing advertising airtime and physical advertising spaces that maximize campaign reach and value. Our advisory covers media selection, budgeting and strategic placement across multiple channels.",
+        "We advise on planning and purchasing advertising airtime and physical spaces that maximize campaign reach and value — covering media selection, budgeting and strategic placement across channels.",
       icon: "lucide:megaphone",
       whoIsFor:
         "Businesses, brands and organizations running marketing or awareness campaigns.",
       ctaText: "Book an Advertising Consultation",
       to: "/services/media-advertising-solutions",
+      bgImage: "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1800&q=80",
+      accentColor: "#2B6CB0",
       subServices: [
         {
           name: "Media Buying",

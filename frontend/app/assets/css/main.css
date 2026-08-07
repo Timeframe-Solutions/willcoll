@@ -47,6 +47,23 @@
   padding-bottom: 7rem;
 }
 
+@utility duration-250 {
+  transition-duration: 250ms;
+}
+
+@utility duration-350 {
+  transition-duration: 350ms;
+}
+
+@utility duration-400 {
+  transition-duration: 400ms;
+}
+
+@utility duration-700 {
+  transition-duration: 700ms;
+}
+
+
 @layer base {
   body {
     @apply bg-gray-50 text-gray-700 font-sans antialiased;
@@ -85,20 +102,67 @@
   /* Scroll reveal — initial hidden state */
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Staggered children reveal */
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .stagger-children.is-visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+  .stagger-children.is-visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.15s; }
+  .stagger-children.is-visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.25s; }
+  .stagger-children.is-visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.35s; }
+  .stagger-children.is-visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.45s; }
+  .stagger-children.is-visible > *:nth-child(n+6) { opacity: 1; transform: none; transition-delay: 0.55s; }
+
+  /* Fade-in from left */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Fade-in from right */
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
+    .reveal, .reveal-left, .reveal-right, .stagger-children > * {
       opacity: 1;
       transform: none;
       transition: none;
     }
+  }
+
+  /* Light badge variant for use on dark/image backgrounds */
+  .badge-light .badge-inner,
+  .badge-light {
+    background-color: rgba(243,115,33,0.15) !important;
+    border-color: rgba(243,115,33,0.35) !important;
+    color: #fbd38d !important;
   }
 
   /* Prose styles for article/long-form content */

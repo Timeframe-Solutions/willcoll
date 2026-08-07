@@ -37,7 +37,7 @@
         <p
           class="text-orange-400 text-xs font-bold tracking-[0.18em] uppercase mb-5"
         >
-          Business Advisory &amp; Consulting
+          Advisory 
         </p>
 
         <!-- H1 — Fraunces serif, large, restrained -->
