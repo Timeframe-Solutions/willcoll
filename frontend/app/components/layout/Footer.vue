@@ -24,10 +24,7 @@
               >
             </div>
           </NuxtLink>
-          <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
-            Business Advisory &amp; Corporate Consulting for Growing
-            Organizations.
-          </p>
+          <p class="text-gray-500 text-sm leading-relaxed max-w-xs">Advisory</p>
           <div class="mt-6 space-y-1.5 text-sm text-gray-500">
             <p>10th Floor, Pension Towers, Loita Street</p>
             <p>P.O. Box 24799 - 00502, Nairobi, Kenya</p>

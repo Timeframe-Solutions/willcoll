@@ -1,5 +1,5 @@
 <template>
-  <!-- Why Choose Us snippet: background image with light overlay, 2-col layout: text left, 4 differentiators right -->
+  <!-- Why Choose Us snippet: warm tinted overlay, 2-col layout -->
   <section
     class="relative py-16 lg:py-28 overflow-hidden"
     aria-label="Why organizations choose Willcoll"
@@ -10,13 +10,31 @@
       style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1800&q=80')"
       aria-hidden="true"
     />
-    <!-- Soft white overlay so image blends with the light section palette -->
+
+    <!-- Lighter warm-white overlay — just a gentle hint of warmth, not golden -->
     <div
-      class="absolute inset-0 bg-gradient-to-br from-white/70 via-gray-50/60 to-white/65"
+      class="absolute inset-0"
+      style="background: linear-gradient(135deg, rgba(255,250,240,0.92) 0%, rgba(255,247,235,0.88) 50%, rgba(255,243,225,0.85) 100%)"
       aria-hidden="true"
     />
+
+    <!-- Soft orange radial glow bottom-left — very subtle -->
+    <div
+      class="absolute bottom-0 left-0 w-[600px] h-[400px] pointer-events-none"
+      style="background: radial-gradient(ellipse at bottom left, rgba(243,115,33,0.10) 0%, transparent 65%)"
+      aria-hidden="true"
+    />
+
+    <!-- Very subtle top-right warm blush -->
+    <div
+      class="absolute top-0 right-0 w-[400px] h-[300px] pointer-events-none"
+      style="background: radial-gradient(ellipse at top right, rgba(251,191,36,0.08) 0%, transparent 60%)"
+      aria-hidden="true"
+    />
+
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
         <!-- Left: editorial text column -->
         <div>
           <SharedSectionHeading
@@ -24,10 +42,10 @@
             heading="Why Organizations Choose Willcoll"
             size="lg"
           />
-          <p class="text-gray-500 leading-relaxed mb-8">
+          <p class="text-gray-600 leading-relaxed mb-8">
             Too many growing organizations are too complex to run informally,
             but not yet a priority for the large advisory firms. Willcoll
-            Agencies exists for that gap bringing senior-level advisory
+            Agencies exists for that gap — bringing senior-level advisory
             discipline in compliance, risk, strategy, and transformation
             directly to the businesses that need it most.
           </p>
@@ -49,8 +67,8 @@
           <div
             v-for="item in differentiators"
             :key="item.title"
-            class="bg-white border border-gray-100 rounded-xl p-6 transition-shadow duration-200 hover:shadow-md"
-            style="box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04)"
+            class="rounded-xl p-6 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+            style="background: rgba(255,255,255,0.72); backdrop-filter: blur(12px); border: 1px solid rgba(243,115,33,0.15); box-shadow: 0 2px 8px rgba(180,83,9,0.07)"
           >
             <SharedIconTile :icon="item.icon" size="sm" class="mb-4" />
             <h3
@@ -61,6 +79,7 @@
             <p class="text-gray-500 text-sm leading-relaxed">{{ item.body }}</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>

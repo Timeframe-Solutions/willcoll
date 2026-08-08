@@ -140,12 +140,14 @@
           <!-- Typography Wordmark -->
           <div class="flex flex-col ml-3 text-left">
             <span
-              class="text-ink-900 font-heading font-black tracking-tight text-lg leading-none transition-colors group-hover:text-orange-500"
+              class="font-heading font-black tracking-tight text-lg leading-none transition-colors duration-300 group-hover:text-orange-500"
+              :class="isScrolled ? 'text-ink-900' : 'text-white'"
             >
               WILLCOLL
             </span>
             <span
-              class="text-gray-500 font-sans tracking-[0.22em] text-[9px] font-bold leading-none mt-1"
+              class="font-sans tracking-[0.22em] text-[9px] font-bold leading-none mt-1 transition-colors duration-300"
+              :class="isScrolled ? 'text-gray-500' : 'text-white/70'"
             >
               AGENCIES
             </span>
