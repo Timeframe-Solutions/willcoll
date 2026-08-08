@@ -1,23 +1,25 @@
 <template>
-  <!-- Full-bleed hero: warm photography + ink overlay + editorial headline bottom-left -->
+  <!-- Full-bleed hero: professional layout + accessible dark overlay + high contrast content -->
   <section
-    class="relative min-h-screen flex items-end overflow-hidden bg-ink-900"
+    class="relative min-h-[85vh] sm:min-h-screen flex items-center overflow-hidden bg-slate-950"
     aria-label="Hero"
   >
-    <!-- Background photo -->
-    <div class="absolute inset-0 z-0 bg-ink-700">
+    <!-- Background photo with responsive overlays -->
+    <div class="absolute inset-0 z-0 bg-slate-900">
       <img
         src="/images/hero-consulting.jpg"
-        alt="Business advisory meeting — warm natural light"
+        alt="Business advisory meeting — professional team collaboration"
         class="w-full h-full object-cover object-center"
       />
-      <!-- Ink-tinted duotone gradient — left-heavy, not a flat dark scrim -->
+      <!-- Subtle dark gradient overlay to ensure all text passes WCAG AAA accessibility -->
       <div
-        class="absolute inset-0 bg-gradient-to-r from-ink-900/75 via-ink-900/40 to-ink-900/10"
+        class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-slate-950/30 lg:from-slate-950/85 lg:via-slate-950/60 lg:to-transparent"
+        aria-hidden="true"
       />
-      <!-- Bottom gradient so text is always legible -->
+      <!-- Extra bottom gradient overlay for readability and transition -->
       <div
-        class="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-transparent to-transparent"
+        class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20"
+        aria-hidden="true"
       />
     </div>
 
@@ -28,42 +30,54 @@
       aria-hidden="true"
     />
 
-    <!-- Hero content — bottom-left layout, per Buyan reference -->
+    <!-- Hero content container -->
     <div
-      class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pb-20 lg:pb-28 pt-40"
+      class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-24 sm:py-32 lg:py-40"
     >
-      <div class="max-w-2xl">
-        <!-- Eyebrow -->
-        <p
-          class="text-orange-400 text-xs font-bold tracking-[0.18em] uppercase mb-5"
-        >
-          Advisory 
-        </p>
+      <div class="max-w-2xl text-left">
+        <!-- Tagline: Small uppercase pill badge / secondary text -->
+        <div class="inline-block mb-6">
+          <span
+            class="px-3 py-1 text-xs font-bold tracking-[0.2em] text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-full uppercase"
+          >
+            Advisory
+          </span>
+        </div>
 
-        <!-- H1 — Fraunces serif, large, restrained -->
+        <!-- Headline: Unified solid color (solid text-white) to prevent visual splitting and achieve WCAG AAA contrast -->
         <h1
-          class="font-heading font-bold text-white leading-[1.08] text-4xl md:text-5xl lg:text-[3.4rem] mb-6"
+          class="font-heading font-extrabold text-white leading-tight tracking-tight text-3xl sm:text-3xl lg:text-5xl xl:text-6xl mb-6"
         >
-          <br class="hidden sm:block" />
-          Engage Trusted<br />
-          <em class="not-italic text-orange-400">Partners</em>
+          Engage Trusted Partners
         </h1>
 
-        <!-- Subheadline -->
+        <!-- Subheadline: constrained text width so it doesn't span full screen -->
         <p
-          class="text-white/75 text-base lg:text-lg leading-relaxed mb-10 max-w-xl"
+          class="text-slate-200 text-base sm:text-lg leading-relaxed mb-10 max-w-xl"
         >
           Willcoll Agencies helps individuals, SMEs, Corporates, and
           organisations achieve compliance, manage risks, and drive growth with
-          expertise and personalized advice
+          expertise and personalized advice.
         </p>
 
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-4 items-center">
-          <SharedButton to="/contact" size="lg">
+        <!-- CTAs: Distinct visual hierarchy (Stack on mobile, row on tablet/desktop) -->
+        <div
+          class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center"
+        >
+          <SharedButton
+            to="/contact"
+            variant="primary"
+            size="lg"
+            class="w-full sm:w-auto text-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+          >
             Book a Consultation
           </SharedButton>
-          <SharedButton to="/services" variant="outline-white" size="lg">
+          <SharedButton
+            to="/services"
+            variant="outline-white"
+            size="lg"
+            class="w-full sm:w-auto text-center justify-center transition-all duration-200 hover:bg-white/10 hover:border-white/40"
+          >
             Explore Our Services
           </SharedButton>
         </div>
@@ -72,12 +86,13 @@
 
     <!-- Scroll cue -->
     <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60"
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60 hidden sm:flex"
     >
-      <span class="text-white text-xs tracking-widest uppercase animate-pulse"
+      <span
+        class="text-white text-[10px] tracking-widest uppercase animate-pulse"
         >Scroll</span
       >
-      <div class="w-px h-10 bg-white/50 overflow-hidden relative">
+      <div class="w-px h-10 bg-white/30 overflow-hidden relative">
         <div
           class="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-line"
         />
