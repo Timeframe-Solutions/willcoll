@@ -149,7 +149,7 @@
 </template>
 
 <script setup lang="ts">
-const AUTOPLAY_MS = 6000;
+const AUTOPLAY_MS = 10000;
 
 const testimonials = [
   {
@@ -176,7 +176,7 @@ const testimonials = [
     accentColor: "#B8862E",
     quote: `Our annual conference at private location was the most seamless we have ever run, 850 delegates, three stages, zero incidents. Willcoll coordinated every supplier and kept us calm throughout.`,
     name: "Amina Halima Osman",
-    role: "Head of Corporate Affairs",
+    role: "Company Secretary",
     initials: "AH",
   },
   {

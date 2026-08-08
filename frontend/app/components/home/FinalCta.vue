@@ -4,9 +4,9 @@
     class="relative overflow-hidden"
     aria-label="Final call to action"
   >
-    <!-- Background image -->
+    <!-- Background image with fixed attachment for premium parallax scroll effect -->
     <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
       style="background-image: url('https://images.unsplash.com/photo-1611348524140-53c9a25263d6?auto=format&fit=crop&w=2400&q=80')"
       aria-hidden="true"
     />
