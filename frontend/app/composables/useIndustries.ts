@@ -31,13 +31,13 @@ export const useIndustries = () => {
       icon: "lucide:coins",
     },
     {
-      name: "Investors & Property Developers",
+      name: "Property Developers",
       description:
         "Due diligence, valuation, and transaction structuring support for capital deployment decisions.",
       icon: "lucide:bar-chart-2",
     },
     {
-      name: "Corporate ",
+      name: "Corporates ",
       description:
         "Specialized advisory support that extends internal teams without the overhead of a full in-house function.",
       icon: "lucide:briefcase",

@@ -174,7 +174,7 @@ const testimonials = [
     service: "Event Production",
     icon: "lucide:sparkles",
     accentColor: "#B8862E",
-    quote: `Our annual conference at private was the most seamless we have ever run — 850 delegates, three stages, zero incidents. Willcoll coordinated every supplier and kept us calm throughout.`,
+    quote: `Our annual conference at private location was the most seamless we have ever run, 850 delegates, three stages, zero incidents. Willcoll coordinated every supplier and kept us calm throughout.`,
     name: "Amina Halima Osman",
     role: "Head of Corporate Affairs",
     initials: "AH",
