@@ -1,10 +1,21 @@
 <template>
-  <!-- Why Choose Us snippet: gray-50 background, 2-col layout: text left, 4 differentiators right -->
+  <!-- Why Choose Us snippet: background image with light overlay, 2-col layout: text left, 4 differentiators right -->
   <section
-    class="py-16 lg:py-28 bg-gray-50"
+    class="relative py-16 lg:py-28 overflow-hidden"
     aria-label="Why organizations choose Willcoll"
   >
-    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <!-- Background image -->
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1800&q=80')"
+      aria-hidden="true"
+    />
+    <!-- Soft white overlay so image blends with the light section palette -->
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-white/70 via-gray-50/60 to-white/65"
+      aria-hidden="true"
+    />
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <!-- Left: editorial text column -->
         <div>

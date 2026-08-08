@@ -28,13 +28,14 @@ export const useServices = () => {
       outcome:
         "Professional advice to help individuals, SMEs, and organizations legally acquire and structure asset ownership.",
       description:
-        "We help clients acquire, structure, manage and safeguard valuable assets. From real estate to business investments, every decision is legally compliant, financially sound and aligned with long-term objectives.",
+        "We advice clients on acquiring, structuring, managing and safeguarding valuable assets. From real estate to business investments, every decision is legally compliant, financially sound and aligned with long-term objectives.",
       icon: "lucide:landmark",
       whoIsFor:
         "Individuals, SMEs, corporates, investors and organizations acquiring or managing assets.",
       ctaText: "Book an Asset Ownership Consultation",
       to: "/services/transaction-advisory",
-      bgImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=80",
+      bgImage:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=80",
       accentColor: "#F37321",
       subServices: [
         {
@@ -46,10 +47,7 @@ export const useServices = () => {
           name: "Ownership Structuring",
           description: "Advice on appropriate legal ownership structures.",
         },
-        {
-          name: "Investment Advisory",
-          description: "Support in evaluating investment opportunities.",
-        },
+
         {
           name: "Due Diligence",
           description:
@@ -66,8 +64,7 @@ export const useServices = () => {
     {
       id: "project-risk-mitigation",
       name: "Project Risk Mitigation",
-      subhead:
-        "Anticipate challenges before they become costly problems.",
+      subhead: "Anticipate challenges before they become costly problems.",
       outcome:
         "Risk identification, planning and mitigation strategies throughout the project lifecycle.",
       description:
@@ -77,7 +74,8 @@ export const useServices = () => {
         "Businesses, NGOs, public sector organizations and project managers delivering projects.",
       ctaText: "Book a Project Risk Consultation",
       to: "/services/risk-assurance",
-      bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1800&q=80",
+      bgImage:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=80",
       accentColor: "#1E8E5A",
       subServices: [
         {
@@ -118,7 +116,8 @@ export const useServices = () => {
         "Corporates, organizations, institutions and individuals planning live events.",
       ctaText: "Book an Event Production Consultation",
       to: "/services/corporate-events-brand-activation",
-      bgImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+      bgImage:
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
       accentColor: "#B8862E",
       subServices: [
         {
@@ -147,8 +146,7 @@ export const useServices = () => {
     {
       id: "advertising-airtime-space",
       name: "Advertising Airtime & Space",
-      subhead:
-        "Invest in the right advertising channels with expert guidance.",
+      subhead: "Invest in the right advertising channels with expert guidance.",
       outcome:
         "Expert advice on purchasing advertising airtime and physical advertising space.",
       description:
@@ -158,7 +156,8 @@ export const useServices = () => {
         "Businesses, brands and organizations running marketing or awareness campaigns.",
       ctaText: "Book an Advertising Consultation",
       to: "/services/media-advertising-solutions",
-      bgImage: "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1800&q=80",
+      bgImage:
+        "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1800&q=80",
       accentColor: "#2B6CB0",
       subServices: [
         {
