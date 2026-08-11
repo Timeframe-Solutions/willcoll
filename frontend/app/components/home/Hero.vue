@@ -7,8 +7,8 @@
     <!-- Background photo with neutral dark-grey/charcoal overlays -->
     <div class="absolute inset-0 z-0 bg-zinc-900">
       <img
-        src="/images/hero-consulting.jpg"
-        alt="Business advisory meeting — professional team collaboration"
+        src="/images/nairobi-skyline.jpg"
+        alt="Nairobi skyline and Central Business District under daylight"
         class="w-full h-full object-cover object-center"
       />
       <!-- Neutral dark-grey/charcoal gradient overlay for WCAG AAA accessibility -->
