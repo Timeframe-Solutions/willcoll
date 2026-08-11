@@ -1,27 +1,39 @@
 <template>
   <!-- Final CTA: full-bleed photo background with dark gradient overlay -->
-  <section
-    class="relative overflow-hidden"
-    aria-label="Final call to action"
-  >
+  <section class="relative overflow-hidden" aria-label="Final call to action">
     <!-- Background image with fixed attachment for premium parallax scroll effect -->
     <div
       class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
-      style="background-image: url('https://images.unsplash.com/photo-1611348524140-53c9a25263d6?auto=format&fit=crop&w=2400&q=80')"
+      style="
+        background-image: url(&quot;https://images.unsplash.com/photo-1611348524140-53c9a25263d6?auto=format&fit=crop&w=2400&q=80&quot;);
+      "
       aria-hidden="true"
     />
 
     <!-- Multi-stop dark overlay: deeper at top & bottom, lighter in centre so image breathes -->
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(160deg, rgba(10,10,10,0.88) 0%, rgba(17,17,17,0.72) 50%, rgba(10,10,10,0.92) 100%)"
+      style="
+        background: linear-gradient(
+          160deg,
+          rgba(10, 10, 10, 0.88) 0%,
+          rgba(17, 17, 17, 0.72) 50%,
+          rgba(10, 10, 10, 0.92) 100%
+        );
+      "
       aria-hidden="true"
     />
 
     <!-- Warm orange tint wash (subtle brand colour bleed) -->
     <div
       class="absolute inset-0 opacity-20 pointer-events-none"
-      style="background: radial-gradient(ellipse 70% 60% at 50% 100%, #F37321 0%, transparent 70%)"
+      style="
+        background: radial-gradient(
+          ellipse 70% 60% at 50% 100%,
+          #f37321 0%,
+          transparent 70%
+        );
+      "
       aria-hidden="true"
     />
 
@@ -39,7 +51,9 @@
     />
 
     <!-- Content -->
-    <div class="relative z-10 py-20 lg:py-36 max-w-7xl mx-auto px-6 lg:px-10 text-center">
+    <div
+      class="relative z-10 py-20 lg:py-36 max-w-7xl mx-auto px-6 lg:px-10 text-center"
+    >
       <p
         class="text-orange-400 text-xs font-bold tracking-[0.15em] uppercase mb-5"
       >
@@ -53,8 +67,8 @@
       <p
         class="text-white/65 text-base lg:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
       >
-        Whether it's compliance, risk, strategy, or your next transaction — book a
-        consultation and speak directly with our advisory team.
+        Whether it's compliance, risk, strategy, or your next transaction, book
+        a consultation and speak directly with our advisory team.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <SharedButton to="/contact" size="lg">

@@ -5,11 +5,11 @@ useHead({ title: "Why Choose Willcoll Agencies | Business Advisory Kenya" });
 const reasons = [
   [
     "Senior-Partner Access",
-    "You engage directly with decision-makers throughout — not a rotating bench of junior staff.",
+    "You engage directly with decision-makers throughout not a rotating bench of junior staff.",
   ],
   [
     "One Firm, Full Spectrum",
-    "Compliance, risk, strategy, transactions, and brand — coordinated under one relationship.",
+    "Compliance, risk, strategy, transactions, and brand coordinated under one relationship.",
   ],
   [
     "Kenyan Regulatory Fluency",
