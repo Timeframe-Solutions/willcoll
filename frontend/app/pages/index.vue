@@ -96,7 +96,7 @@ useHead({
     <HomeServiceOverview />
 
     <!-- Why Willcoll -->
-    <section class="relative py-16 lg:py-28 overflow-hidden" aria-label="Why Willcoll">
+    <section class="relative py-16 lg:py-20 overflow-hidden" aria-label="Why Willcoll">
       <div class="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=70"
@@ -108,43 +108,41 @@ useHead({
         <div class="absolute inset-0 bg-ink-900/90" aria-hidden="true"></div>
       </div>
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
-        <SharedSectionHeading
-          eyebrow="Why Willcoll"
-          heading="Why work with a media partner?"
-          subhead="Five reasons organizations consolidate their media with us instead of buying from each house directly."
-          :centered="true"
-          :dark="true"
-        />
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
-          <div
-            v-for="w in whyWillcoll"
-            :key="w.title"
-            class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7"
-          >
-            <SharedIconTile :icon="w.icon" size="sm" class="mb-4" />
-            <h3 class="font-heading text-lg text-white mb-2">{{ w.title }}</h3>
-            <p class="text-sm text-gray-300 leading-relaxed">{{ w.body }}</p>
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div>
+            <p class="text-orange-500 text-xs font-bold uppercase tracking-widest mb-3">Why Willcoll</p>
+            <h2 class="font-heading font-bold text-3xl lg:text-4xl leading-tight text-white mb-4">Why work with a media partner?</h2>
+            <p class="text-gray-300 leading-relaxed mb-8">Five reasons organizations consolidate their media with us instead of buying from each house directly.</p>
+            <ul class="space-y-5">
+              <li v-for="w in whyWillcoll" :key="w.title" class="flex items-start gap-4">
+                <SharedIconTile :icon="w.icon" size="sm" class="mt-0.5" />
+                <div>
+                  <h3 class="font-heading text-base text-white mb-1">{{ w.title }}</h3>
+                  <p class="text-sm text-gray-300 leading-relaxed">{{ w.body }}</p>
+                </div>
+              </li>
+            </ul>
           </div>
-        </div>
 
-        <div class="grid lg:grid-cols-2 gap-6 mt-10">
-          <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-            <h3 class="font-heading text-lg text-white mb-5">{{ comparison.direct.title }}</h3>
-            <ul class="space-y-3">
-              <li v-for="p in comparison.direct.points" :key="p" class="flex gap-3 text-gray-300">
-                <Icon name="lucide:x" class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
-                <span class="leading-relaxed">{{ p }}</span>
-              </li>
-            </ul>
-          </div>
-          <div class="border-2 border-orange-500 rounded-2xl p-8 bg-orange-500/10">
-            <h3 class="font-heading text-lg text-white mb-5">{{ comparison.willcoll.title }}</h3>
-            <ul class="space-y-3">
-              <li v-for="p in comparison.willcoll.points" :key="p" class="flex gap-3 text-gray-100">
-                <Icon name="lucide:check-circle-2" class="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
-                <span class="leading-relaxed">{{ p }}</span>
-              </li>
-            </ul>
+          <div class="space-y-4 lg:space-y-5">
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+              <h3 class="font-heading text-base text-white mb-4">{{ comparison.direct.title }}</h3>
+              <ul class="space-y-2.5">
+                <li v-for="p in comparison.direct.points" :key="p" class="flex gap-2.5 text-sm text-gray-300">
+                  <Icon name="lucide:x" class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                  <span class="leading-snug">{{ p }}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="border-2 border-orange-500 rounded-2xl p-6 bg-orange-500/10">
+              <h3 class="font-heading text-base text-white mb-4">{{ comparison.willcoll.title }}</h3>
+              <ul class="space-y-2.5">
+                <li v-for="p in comparison.willcoll.points" :key="p" class="flex gap-2.5 text-sm text-gray-100">
+                  <Icon name="lucide:check-circle-2" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                  <span class="leading-snug">{{ p }}</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -278,6 +276,9 @@ useHead({
         </p>
       </div>
     </section>
+
+    <!-- Testimonials -->
+    <HomeTestimonials />
 
     <HomeFinalCta />
   </div>

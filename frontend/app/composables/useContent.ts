@@ -177,31 +177,31 @@ export const useContent = () => {
     {
       icon: 'lucide:megaphone',
       name: 'Marketing Teams',
-      body: 'Media planning, audience, campaign execution, media mix and budget optimization.',
+      body: 'Own brand and campaign goals that need media placed to reach the right people, within budget and on time.',
       points: ['Media planning', 'Audience targeting', 'Campaign execution', 'Media mix and budget'],
     },
     {
       icon: 'lucide:user-search',
       name: 'HR Teams',
-      body: 'Recruitment campaigns, candidate reach, artwork and publication coordination.',
+      body: 'Fill open roles faster by reaching qualified candidates through trusted, well-placed recruitment media.',
       points: ['Recruitment campaigns', 'Candidate reach', 'Recruitment artwork', 'Publication coordination'],
     },
     {
       icon: 'lucide:shopping-cart',
       name: 'Procurement Teams',
-      body: 'Supplier coordination, consolidated requirements, documentation and quotes.',
+      body: 'Keep media purchasing compliant and predictable with one commercial partner instead of several.',
       points: ['Supplier coordination', 'Consolidated requirements', 'Documentation', 'Quotes and commercial workflow'],
     },
     {
       icon: 'lucide:newspaper',
       name: 'Corporate Communications',
-      body: 'Notices, announcements, publications and compliance communication.',
+      body: 'Publish statutory, tender and corporate messages accurately and on schedule.',
       points: ['Notices', 'Announcements', 'Publications', 'Compliance communication'],
     },
     {
       icon: 'lucide:building-2',
       name: 'Administration',
-      body: 'Corporate subscriptions, delivery, digital access and recurring management.',
+      body: 'Keep teams supplied with the publications and digital access they depend on every day.',
       points: ['Corporate subscriptions', 'Newspaper delivery', 'Digital access', 'Recurring management'],
     },
   ]

@@ -77,7 +77,7 @@
         <SharedButton to="/contact" size="sm">Get a Media Recommendation</SharedButton>
       </div>
 
-      <button class="lg:hidden p-2" :class="isScrolled ? 'text-ink-900' : 'text-white'" @click="isMobileMenuOpen = !isMobileMenuOpen" aria-label="Toggle menu">
+      <button class="lg:hidden p-2" :class="isScrolled ? 'text-ink-900' : 'text-white'" @click="toggleMobileMenu" aria-label="Toggle menu">
         <Icon name="lucide:menu" class="w-6 h-6" />
       </button>
     </div>
@@ -103,21 +103,44 @@
           </div>
 
           <NuxtLink to="/" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Home</NuxtLink>
-          <NuxtLink to="/services" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Services</NuxtLink>
-          <div class="pl-4 pb-2 space-y-2">
-            <NuxtLink v-for="s in services" :key="s.id" :to="s.to" class="block text-sm text-gray-600 py-1" @click="isMobileMenuOpen = false">
-              {{ s.navLabel }} — {{ s.name }}
-            </NuxtLink>
+
+          <div class="border-b border-gray-100">
+            <button
+              type="button"
+              class="w-full flex items-center justify-between py-3 text-lg font-bold text-ink-900"
+              :aria-expanded="servicesOpen"
+              @click="servicesOpen = !servicesOpen"
+            >
+              Services
+              <Icon name="lucide:chevron-down" class="w-5 h-5 text-gray-500 transition-transform duration-200" :class="servicesOpen ? 'rotate-180' : ''" />
+            </button>
+            <div v-show="servicesOpen" class="pb-3 pl-2 space-y-1">
+              <NuxtLink to="/services" class="block text-sm text-gray-600 py-1" @click="isMobileMenuOpen = false">All Services</NuxtLink>
+              <NuxtLink v-for="s in services" :key="s.id" :to="s.to" class="block text-sm text-gray-600 py-1" @click="isMobileMenuOpen = false">
+                {{ s.navLabel }} — {{ s.name }}
+              </NuxtLink>
+            </div>
           </div>
+
           <NuxtLink to="/how-it-works" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">How It Works</NuxtLink>
           <NuxtLink to="/corporate-solutions" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Corporate Solutions</NuxtLink>
           <NuxtLink to="/about" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">About</NuxtLink>
           <NuxtLink to="/contact" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Contact</NuxtLink>
 
-          <div class="border-t border-gray-100 mt-6 pt-6">
-            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Existing clients</p>
-            <NuxtLink to="/submit-notice" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Submit Notice</NuxtLink>
-            <NuxtLink to="/activate-staff" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Activate Staff</NuxtLink>
+          <div class="border-t border-gray-100 mt-4 pt-4">
+            <button
+              type="button"
+              class="w-full flex items-center justify-between py-2 text-base font-bold text-ink-900"
+              :aria-expanded="portalOpen"
+              @click="portalOpen = !portalOpen"
+            >
+              Client Portal
+              <Icon name="lucide:chevron-down" class="w-5 h-5 text-gray-500 transition-transform duration-200" :class="portalOpen ? 'rotate-180' : ''" />
+            </button>
+            <div v-show="portalOpen" class="pt-2 pl-2 space-y-1">
+              <NuxtLink to="/submit-notice" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Submit Notice</NuxtLink>
+              <NuxtLink to="/activate-staff" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Activate Staff</NuxtLink>
+            </div>
           </div>
 
           <SharedButton to="/contact" class="w-full mt-6" @click="isMobileMenuOpen = false">Get a Media Recommendation</SharedButton>
@@ -135,6 +158,8 @@ const { services } = useServices()
 const isScrolled = ref(false)
 const dropdown = ref<string | null>(null)
 const isMobileMenuOpen = ref(false)
+const servicesOpen = ref(false)
+const portalOpen = ref(false)
 let closeTimer: ReturnType<typeof setTimeout> | null = null
 
 const linkClass = computed(() =>
@@ -150,6 +175,14 @@ const scheduleClose = () => {
   closeTimer = setTimeout(() => {
     dropdown.value = null
   }, 120)
+}
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+  if (isMobileMenuOpen.value) {
+    servicesOpen.value = false
+    portalOpen.value = false
+  }
 }
 
 const handleScroll = () => {
