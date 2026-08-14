@@ -20,11 +20,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   // Modules registration including icon library, sitemap generation, and robots compliance
-  modules: [
-    "@nuxt/icon",
-    "@nuxtjs/sitemap",
-    "@nuxtjs/robots"
-  ],
+  modules: ["@nuxt/icon", "@nuxtjs/sitemap", "@nuxtjs/robots"],
 
   // Unified canonical site configuration
   site: {
@@ -40,51 +36,25 @@ export default defineNuxtConfig({
 
   // Robots.txt specifications configuration
   robots: {
-    rules: [
+    groups: [
       // 1. Explicitly allow mainstream search engines to crawl all public pathways
       {
-        userAgent: "Googlebot",
-        allow: "/",
-      },
-      {
-        userAgent: "Bingbot",
+        userAgent: ["Googlebot", "Bingbot"],
         allow: "/",
       },
       // 2. Globally block high-volume generative AI scrapers and crawlers
       {
-        userAgent: "GPTBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        disallow: "/",
-      },
-      {
-        userAgent: "Google-Extended",
-        disallow: "/",
-      },
-      {
-        userAgent: "AnthropicAI",
-        disallow: "/",
-      },
-      {
-        userAgent: "Claude-Web",
-        disallow: "/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "Applebot-Extended",
-        disallow: "/",
-      },
-      {
-        userAgent: "cohere-ai",
-        disallow: "/",
-      },
-      {
-        userAgent: "PerplexityBot",
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "Google-Extended",
+          "AnthropicAI",
+          "Claude-Web",
+          "ClaudeBot",
+          "Applebot-Extended",
+          "cohere-ai",
+          "PerplexityBot",
+        ],
         disallow: "/",
       },
     ],
