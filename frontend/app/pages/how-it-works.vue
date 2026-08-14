@@ -57,10 +57,10 @@ const afterSteps = [
             Start with a single requirement.
           </h2>
           <p class="text-gray-300 mb-7 leading-relaxed">
-            Tell us what you need — an advert, a recruitment campaign, a notice
-            or a subscription — and we'll handle the rest.
+            Tell us what you need: an advert, a recruitment campaign, a notice
+            or a subscription. We'll handle the rest.
           </p>
-          <SharedButton to="/contact" size="lg">Get a Media Quote</SharedButton>
+          <SharedButton to="/contact" size="lg">Get a Media Recommendation</SharedButton>
         </div>
       </div>
     </section>

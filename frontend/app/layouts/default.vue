@@ -78,4 +78,67 @@ useHead({
     },
   ],
 });
+
+// Breadcrumb list for the current page
+useHead(() => {
+  const segments = route.path.split('/').filter(Boolean)
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://willcoll.co.ke' },
+    ...segments.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+      item: `https://willcoll.co.ke/${segments.slice(0, i + 1).join('/')}`,
+    })),
+  ]
+
+  return {
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: items,
+        }),
+      },
+    ],
+  }
+})
+
+// Service schema for the commercial media services
+const { services } = useServices()
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Commercial media planning, buying and management',
+        serviceType: 'Media buying and planning',
+        provider: {
+          '@type': 'Organization',
+          name: 'Willcoll Agencies',
+          url: 'https://willcoll.co.ke',
+        },
+        areaServed: { '@type': 'Country', name: 'Kenya' },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Media services',
+          itemListElement: services.map((s, i) => ({
+            '@type': 'Offer',
+            position: i + 1,
+            itemOffered: {
+              '@type': 'Service',
+              name: s.name,
+              description: s.outcome,
+            },
+          })),
+        },
+      }),
+    },
+  ],
+});
 </script>

@@ -10,7 +10,7 @@
               <span class="text-gray-500 font-sans tracking-[0.22em] text-[9px] font-bold leading-none mt-1">AGENCIES</span>
             </div>
           </NuxtLink>
-          <p class="text-gray-500 text-sm leading-relaxed max-w-xs">Your commercial gateway to Kenya's leading media platforms.</p>
+          <p class="text-gray-500 text-sm leading-relaxed max-w-xs">Independent media planning, buying and execution for Kenyan organizations.</p>
           <div class="mt-6 space-y-1.5 text-sm text-gray-500">
             <p>10th Floor, Pension Towers, Loita Street</p>
             <p>P.O. Box 24799 - 00502, Nairobi, Kenya</p>

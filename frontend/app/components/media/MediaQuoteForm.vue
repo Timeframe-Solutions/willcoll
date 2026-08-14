@@ -11,9 +11,9 @@ const props = withDefaults(
     service: '',
     requirement: '',
     submitLabel: 'Send Enquiry',
-    title: 'Get a Media Quote',
+    title: 'Get a Media Recommendation',
     description:
-      'Share your requirement and our team will respond with next steps and, where possible, an indicative quote.',
+      'Share your objective, audience and budget. Our team will respond with a media recommendation and next steps.',
   },
 )
 
@@ -45,6 +45,16 @@ watch(
   },
 )
 
+const route = useRoute()
+const { track } = useAnalytics()
+
+const captureUtm = () => {
+  const q = route.query
+  const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+  const parts = params.filter((k) => q[k]).map((k) => `${k}=${q[k]}`)
+  return parts.length ? `\n\nSource: ${parts.join(', ')}` : ''
+}
+
 const isSubmitting = ref(false)
 const status = ref<{ type: 'success' | 'error'; message: string } | null>(null)
 
@@ -70,7 +80,7 @@ const submit = async () => {
         phone: form.phone.trim(),
         service: form.service,
         budget: form.budget,
-        message: form.message.trim(),
+        message: form.message.trim() + captureUtm(),
         website: form.website,
       },
     })
@@ -78,6 +88,7 @@ const submit = async () => {
       type: 'success',
       message: 'Thank you. Our team will be in touch with next steps.',
     }
+    track('media_recommendation_submitted', { service: form.service })
     Object.assign(form, {
       fullName: '',
       company: '',
@@ -154,7 +165,7 @@ const submit = async () => {
       <div class="sm:col-span-2">
         <label for="qf-message" class="block text-sm font-semibold text-ink-900 mb-2">Your requirement</label>
         <textarea id="qf-message" v-model.trim="form.message" rows="4"
-          placeholder="Tell us what you need — platform, audience, timing, and any questions."
+          placeholder="Tell us what you need: platform, audience, timing and any questions."
           class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100" />
       </div>
 
@@ -174,7 +185,8 @@ const submit = async () => {
         </p>
       </div>
       <p class="sm:col-span-2 text-xs text-gray-500">
-        We will use your details only to respond to this enquiry. No account is required.
+        We will use your details only to respond to this enquiry. No account is required. See our
+        <NuxtLink to="/privacy" class="underline hover:text-gray-700">Privacy Policy</NuxtLink>.
       </p>
     </form>
   </div>

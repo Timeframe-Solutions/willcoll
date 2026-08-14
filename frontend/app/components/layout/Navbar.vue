@@ -74,7 +74,7 @@
             </div>
           </transition>
         </div>
-        <SharedButton to="/contact" size="sm">Get a Media Quote</SharedButton>
+        <SharedButton to="/contact" size="sm">Get a Media Recommendation</SharedButton>
       </div>
 
       <button class="lg:hidden p-2" :class="isScrolled ? 'text-ink-900' : 'text-white'" @click="isMobileMenuOpen = !isMobileMenuOpen" aria-label="Toggle menu">
@@ -120,7 +120,7 @@
             <NuxtLink to="/activate-staff" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Activate Staff</NuxtLink>
           </div>
 
-          <SharedButton to="/contact" class="w-full mt-6" @click="isMobileMenuOpen = false">Get a Media Quote</SharedButton>
+          <SharedButton to="/contact" class="w-full mt-6" @click="isMobileMenuOpen = false">Get a Media Recommendation</SharedButton>
         </div>
       </div>
     </transition>

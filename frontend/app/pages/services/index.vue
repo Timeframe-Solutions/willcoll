@@ -5,7 +5,7 @@ useHead({
   title: 'Commercial Media Services | Willcoll Agencies',
   meta: [{
     name: 'description',
-    content: 'Advertise, recruit, publish notices and manage corporate subscriptions through Willcoll — one commercial media partner for Kenyan businesses.',
+    content: 'Advertise, recruit, publish notices and manage corporate subscriptions through Willcoll, one commercial media partner for Kenyan businesses.',
   }],
 })
 </script>
@@ -24,7 +24,7 @@ useHead({
       <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p class="text-sm text-gray-500">Showing <span class="font-semibold text-ink-900">{{ services.length }}</span> services</p>
         <NuxtLink to="/contact" class="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-700">
-          Not sure where to start? Get a media quote
+          Not sure where to start? Get a media recommendation
           <Icon name="lucide:arrow-right" class="w-4 h-4" />
         </NuxtLink>
       </div>
@@ -68,7 +68,7 @@ useHead({
         <p class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-4">Not sure where to start?</p>
         <h2 class="text-3xl lg:text-4xl font-heading text-white mb-5 leading-tight">Tell us the requirement, we'll shape the solution.</h2>
         <p class="text-gray-300 mb-8 text-lg">Speak to a media advisor and we'll recommend the most useful next step.</p>
-        <SharedButton to="/contact" size="lg">Get a Media Quote</SharedButton>
+        <SharedButton to="/contact" size="lg">Get a Media Recommendation</SharedButton>
       </div>
     </section>
   </div>

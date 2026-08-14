@@ -59,7 +59,7 @@ const whyWillcoll = [
 
           <div class="flex flex-col sm:flex-row gap-4">
             <SharedButton :to="`/contact?service=${encodeURIComponent(service.name)}`" size="lg">{{ service.ctaText }}</SharedButton>
-            <SharedButton to="/contact" variant="outline-white" size="lg">Get a Media Quote</SharedButton>
+            <SharedButton to="/contact" variant="outline-white" size="lg">Talk to a Media Advisor</SharedButton>
           </div>
         </div>
       </div>

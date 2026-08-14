@@ -8,7 +8,7 @@ const items = [
   },
   {
     question: 'How do I get a quote?',
-    answer: "Send us your requirement through the Get a Media Quote form. Our team will respond with next steps and, where possible, an indicative quote. Final rates and availability are confirmed by the relevant media house.",
+    answer: "Send us your requirement through the Get a Media Recommendation form. Our team will respond with next steps and, where possible, an indicative quote. Final rates and availability are confirmed by the relevant media house.",
   },
   {
     question: 'Which media platforms do you work with?',
@@ -31,6 +31,23 @@ const items = [
     answer: 'Yes. We are based in Nairobi and serve businesses and institutions across Kenya.',
   },
 ]
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: items.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer },
+        })),
+      }),
+    },
+  ],
+})
 </script>
 
 <template>
@@ -47,7 +64,7 @@ const items = [
         <div class="mt-12 rounded-2xl bg-ink-900 p-8 text-center">
           <h2 class="text-white text-2xl mb-3">Still have a question?</h2>
           <p class="text-gray-300 mb-6">A short conversation is the fastest way to get a useful answer.</p>
-          <SharedButton to="/contact">Get a Media Quote</SharedButton>
+          <SharedButton to="/contact">Get a Media Recommendation</SharedButton>
         </div>
       </div>
     </section>

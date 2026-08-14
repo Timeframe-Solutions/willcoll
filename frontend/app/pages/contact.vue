@@ -4,11 +4,11 @@ const presetService = typeof route.query.service === 'string' ? route.query.serv
 const presetRequirement = typeof route.query.requirement === 'string' ? route.query.requirement : ''
 
 useHead({
-  title: 'Get a Media Quote | Willcoll Agencies',
+  title: 'Get a Media Recommendation | Willcoll Agencies',
   meta: [
     {
       name: 'description',
-      content: 'Request a media quote from Willcoll — advertising, recruitment advertising, public notices and corporate subscriptions.',
+      content: 'Request a media recommendation from Willcoll. Independent media planning, buying and execution for Kenyan organizations.',
     },
   ],
 })
@@ -17,9 +17,9 @@ useHead({
 <template>
   <div>
     <SharedPageHero
-      eyebrow="Get a media quote"
-      title="Tell Us What You Need"
-      subtitle="One enquiry is all it takes. Share your requirement and our team will respond with next steps and, where possible, an indicative quote."
+      eyebrow="Media recommendation"
+      title="Tell Us What You're Trying to Achieve"
+      subtitle="Share your objective, audience and budget. Our team will respond with a media recommendation and next steps."
     />
 
     <section class="py-16 lg:py-24 bg-gray-50">
@@ -40,7 +40,7 @@ useHead({
           <MediaQuoteForm
             :service="presetService"
             :requirement="presetRequirement"
-            submit-label="Get a Media Quote"
+            submit-label="Get a Media Recommendation"
           />
         </div>
       </div>

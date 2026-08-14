@@ -1,29 +1,16 @@
 <script setup lang="ts">
-const mediaPlatforms = [
-  { name: "NTV", type: "Television" },
-  { name: "Citizen TV", type: "Television" },
-  { name: "TV47", type: "Television" },
-  { name: "KTN", type: "Television" },
-  { name: "KBC", type: "Television" },
-  { name: "Daily Nation", type: "Print" },
-  { name: "Standard", type: "Print" },
-  { name: "Business Daily", type: "Print" },
-  { name: "The Star", type: "Print" },
-  { name: "Nation.africa", type: "Digital" },
-  { name: "Standard Digital", type: "Digital" },
-  { name: "The Star Online", type: "Digital" },
-];
+const { mediaPlatforms } = useContent()
 </script>
 
 <template>
   <section class="py-16 lg:py-24 bg-ink-900 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 mb-10">
       <SharedSectionHeading
-        eyebrow="Media reach"
-        heading="Placing campaigns across Kenya's trusted media"
-        subhead="We work across the platforms Kenyans watch, read and engage with every day — advising the right mix for your audience and objectives."
+        eyebrow="Media network"
+        heading="The media network we plan across"
+        subhead="Television, print and digital platforms across Kenya, coordinated through one commercial partner."
         :centered="true"
-        class="text-white [&_h2]:text-white [&_p]:text-gray-400 [&_span]:text-orange-400"
+        :dark="true"
       />
     </div>
 
@@ -57,7 +44,7 @@ const mediaPlatforms = [
           >
             <span
               class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3"
-              >{{ platform.type }}</span
+              >{{ platform.medium }}</span
             >
             <p class="font-heading font-bold text-white text-lg leading-tight">
               {{ platform.name }}
@@ -67,9 +54,9 @@ const mediaPlatforms = [
       </div>
     </div>
 
-    <p class="text-center text-xs text-gray-600 mt-8 px-6">
-      Platform names listed for reference. Rates and availability are confirmed
-      directly by each media house.
+    <p class="text-center text-xs text-gray-600 mt-8 px-6 max-w-2xl mx-auto">
+      Platform names are listed for reference only. Audience data is available
+      on request. Final rates and availability are confirmed by each media house.
     </p>
   </section>
 </template>

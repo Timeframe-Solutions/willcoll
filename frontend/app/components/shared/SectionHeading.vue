@@ -10,9 +10,10 @@
     <!-- Heading -->
     <h2
       v-if="heading"
-      class="font-heading font-bold text-ink-900 leading-tight"
+      class="font-heading font-bold leading-tight"
       :class="[
         centered ? 'mx-auto' : '',
+        dark ? 'text-white' : 'text-ink-900',
         sizeClasses
       ]"
     >
@@ -21,9 +22,10 @@
     <!-- Subhead -->
     <p
       v-if="subhead"
-      class="mt-4 text-gray-500 leading-relaxed"
+      class="mt-4 leading-relaxed"
       :class="[
         centered ? 'mx-auto max-w-2xl' : 'max-w-xl',
+        dark ? 'text-gray-300' : 'text-gray-500',
         subheadSize
       ]"
     >
@@ -41,11 +43,13 @@ interface Props {
   subhead?: string
   centered?: boolean
   size?: 'md' | 'lg' | 'xl'
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   centered: false,
-  size: 'lg'
+  size: 'lg',
+  dark: false
 })
 
 const sizeClasses = computed(() => {

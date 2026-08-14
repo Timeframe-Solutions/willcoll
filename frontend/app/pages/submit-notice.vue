@@ -22,7 +22,7 @@ useHead({
       <div class="max-w-3xl mx-auto px-6">
         <div class="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-8">
           <p class="text-sm text-amber-800">
-            <strong>Existing clients only.</strong> New to Willcoll? <NuxtLink to="/contact" class="font-semibold underline">Get a media quote</NuxtLink> first and our team will set you up.
+            <strong>Existing clients only.</strong> New to Willcoll? <NuxtLink to="/contact" class="font-semibold underline">Get a media recommendation</NuxtLink> first and our team will set you up.
           </p>
         </div>
 

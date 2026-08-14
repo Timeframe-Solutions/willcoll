@@ -89,7 +89,7 @@ const submit = async () => {
             ? "Media Advertising & Placement"
             : "Corporate Digital & Print Subscriptions",
         budget: "",
-        message: `${summary.value} — Enquiry from the media calculator.`,
+        message: `${summary.value}. Enquiry from the media calculator.`,
         website: form.website,
       },
     });

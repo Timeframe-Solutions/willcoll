@@ -1,0 +1,174 @@
+# =============================================================================
+# CI/CD — Willcoll Agencies (Nuxt 4 frontend)
+# -----------------------------------------------------------------------------
+# Two-stage pipeline:
+#   1. quality — strict, secrets-free gate (install → prepare → validate → build)
+#   2. deploy  — Vercel CLI (pull → build → deploy), runs only after `quality`
+#
+# Deployment mode is derived from the trigger:
+#   * push to `main`  -> production deployment (aliased to production domain)
+#   * pull request    -> preview deployment (ephemeral preview URL)
+#
+# Repo setup prerequisites (one-time, outside this file):
+#   * Add VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID as GitHub secrets.
+#   * If Vercel's built-in Git integration is also enabled for this repo, set
+#     "git": { "deploymentEnabled": false } in frontend/vercel.json to avoid
+#     deploying twice per commit (once by Vercel, once by this workflow).
+#   * Keep the Vercel project's "Root Directory" at its default (".") because
+#     the CLI below already runs from ./frontend (see deploy job comment).
+# =============================================================================
+
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel any superseded in-flight runs for the same branch/PR to save runner time.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Least-privilege: the jobs below only need read access to the repo contents.
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1 — Quality & Production Verification
+  # Runs on every push to main and every PR targeting main. No secrets required.
+  # ---------------------------------------------------------------------------
+  quality:
+    name: Quality & Production Verification
+    runs-on: ubuntu-latest
+    # All pnpm/Nuxt commands execute inside the Nuxt project subfolder, so the
+    # monorepo layout (frontend/) never breaks relative path resolution.
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm (v10)
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+          # Dependencies are installed explicitly below with --frozen-lockfile.
+
+      - name: Setup Node.js 20 (with pnpm cache)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          # Point the cache at the lockfile inside the subfolder.
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - name: Install dependencies (frozen lockfile)
+        # --frozen-lockfile fails CI if pnpm-lock.yaml is out of sync with
+        # package.json, guaranteeing reproducible installs.
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Nuxt type definitions (postinstall → nuxt prepare)
+        # Ensures .nuxt/ generated types exist before build/type-check steps.
+        run: pnpm run postinstall
+
+      - name: Validate required runtime environment variables
+        shell: bash
+        run: |
+          # Server-only runtimeConfig values consumed by server/utils/mailer.ts.
+          # These are injected by Vercel at RUNTIME (not needed for a successful
+          # build), so we surface a warning instead of hard-failing the build.
+          required=(ZOHO_HOST ZOHO_PORT ZOHO_USER ZOHO_PASS CONTACT_EMAIL)
+          for var in "${required[@]}"; do
+            if [ -z "${!var:-}" ]; then
+              echo "::warning::Runtime env var '${var}' is not set — configure it in Vercel Project Settings → Environment Variables."
+            else
+              echo "✓ ${var} is set"
+            fi
+          done
+
+      - name: Type check (when configured)
+        shell: bash
+        run: |
+          # Static type checking is OPT-IN: it only runs if the project defines a
+          # `typecheck` script. To enable it, add to frontend/package.json:
+          #   "typecheck": "nuxt typecheck"
+          # and add `typescript` + `vue-tsc` to devDependencies.
+          if grep -q '"typecheck"' package.json; then
+            pnpm run typecheck
+          else
+            echo "::notice::No 'typecheck' script found — skipping static type checking."
+          fi
+
+      - name: Production build check
+        # Fails the pipeline on any compilation error (incl. UTF-8/encoding issues).
+        run: pnpm run build
+
+  # ---------------------------------------------------------------------------
+  # Job 2 — Deployment (Vercel CLI)
+  # Runs only after the quality gate passes. Uses the official Vercel CLI with
+  # the recommended three-step flow: pull env → build artifacts → deploy.
+  # ---------------------------------------------------------------------------
+  deploy:
+    name: Deploy to Vercel
+    needs: quality
+    runs-on: ubuntu-latest
+    # Skip fork PRs for security: secrets (VERCEL_TOKEN) are never shared with
+    # fork-triggered workflows, and we never want to expose the token.
+    if: |
+      needs.quality.result == 'success' &&
+      (github.event_name == 'push' ||
+       (github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.full_name == github.repository))
+
+    # Linked-project identifiers (see Vercel dashboard → Project Settings).
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    # Vercel CLI must run from the Nuxt project root so it detects the framework
+    # and writes .vercel/ metadata to the correct location. Because we run from
+    # ./frontend, leave the Vercel project's "Root Directory" at its default
+    # (".") — otherwise the CLI would look for frontend/frontend.
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache Vercel build output (for speed)
+        uses: actions/cache@v4
+        with:
+          path: frontend/.vercel/cache
+          key: vercel-cache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            vercel-cache-${{ github.ref }}-
+            vercel-cache-
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel environment information
+        # Downloads .vercel/project.json + env vars. `--environment` selects the
+        # production set for main, or the preview set for pull requests.
+        run: vercel pull --yes --environment=${{ github.event_name == 'push' && 'production' || 'preview' }} --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build project artifacts
+        # `--prod` builds against the production environment on main only.
+        run: vercel build ${{ github.event_name == 'push' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy project artifacts to Vercel
+        # `--prebuilt` deploys the exact artifacts produced by `vercel build`.
+        # `--prod` promotes the deployment to the production alias on main.
+        run: vercel deploy --prebuilt ${{ github.event_name == 'push' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}

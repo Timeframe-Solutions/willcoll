@@ -12,19 +12,21 @@
         class="w-full h-full object-cover object-center"
         fetchpriority="high"
       />
-      <!-- Mobile: strong bottom-up dark gradient -->
+      <!-- Base darkening overlay for text contrast -->
+      <div class="absolute inset-0 bg-slate-950/30" aria-hidden="true" />
+      <!-- Mobile: bottom-up gradient keeps text legible -->
       <div
-        class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/30 lg:hidden"
+        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent lg:hidden"
         aria-hidden="true"
       />
       <!-- Desktop: side gradient, lets image breathe on the right -->
       <div
-        class="absolute inset-0 hidden lg:block bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-zinc-950/15 xl:to-transparent"
+        class="absolute inset-0 hidden lg:block bg-gradient-to-r from-black/70 via-black/45 to-black/15"
         aria-hidden="true"
       />
       <!-- Universal top scrim for navbar legibility -->
       <div
-        class="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent"
+        class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"
         aria-hidden="true"
       />
     </div>
@@ -51,58 +53,52 @@
               <!-- Badge -->
               <div class="hero-item" style="--delay: 0ms">
                 <span
-                  class="inline-flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-bold tracking-[0.18em] text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full uppercase mb-5"
+                  class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-orange-400 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-6"
                 >
                   <span
-                    class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"
+                    class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse flex-shrink-0"
                     aria-hidden="true"
                   />
-                  Commercial Media Partner
+                  Media Partner
                 </span>
               </div>
 
               <!-- Headline with fluid type scaling -->
               <h1
-                class="hero-item font-heading font-extrabold text-white leading-[1.1] tracking-tight mb-5"
-                style="--delay: 80ms; font-size: clamp(1.875rem, 5.5vw, 4rem)"
+                class="hero-item font-sans font-extrabold text-white leading-[1.1] tracking-tight mb-5 text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
+                style="--delay: 80ms"
               >
-                Your Commercial Gateway to&nbsp;Kenya's
-                <em class="not-italic text-orange-400">Leading&nbsp;Media</em>
-                Platforms
+                Make Every
+                <span class="text-orange-500">Media Shilling</span>
+                Work&nbsp;Harder.
               </h1>
 
               <!-- Sub-copy -->
               <p
-                class="hero-item text-zinc-300 leading-relaxed mb-9 max-w-xl xl:max-w-2xl"
-                style="--delay: 160ms; font-size: clamp(1rem, 1.4vw, 1.125rem)"
+                class="hero-item text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed mb-9"
+                style="--delay: 160ms"
               >
-                From advertising and recruitment campaigns to public notices and
-                corporate subscriptions. Willcoll helps businesses plan, place
-                and manage their media requirements through one trusted
-                commercial partner.
+                Independent media planning, buying and execution for Kenyan
+                organizations.
               </p>
 
               <!-- CTA row -->
               <div
-                class="hero-item flex flex-col sm:flex-row gap-3.5 mb-10 sm:mb-12"
+                class="hero-item flex flex-col sm:flex-row gap-4 mb-10 sm:mb-12"
                 style="--delay: 240ms"
               >
-                <SharedButton
+                <NuxtLink
                   to="/contact"
-                  variant="primary"
-                  size="lg"
-                  class="w-full sm:w-auto justify-center min-h-[52px]"
+                  class="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-orange-500/20 w-full sm:w-auto"
                 >
-                  Get a Media Quote
-                </SharedButton>
-                <SharedButton
-                  to="/services"
-                  variant="outline-white"
-                  size="lg"
-                  class="w-full sm:w-auto justify-center min-h-[52px] hover:bg-white/10 hover:border-white/40"
+                  Get a Media Recommendation
+                </NuxtLink>
+                <NuxtLink
+                  to="/contact"
+                  class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-xl backdrop-blur-sm transition-all w-full sm:w-auto"
                 >
-                  Explore Services
-                </SharedButton>
+                  Talk to a Media Advisor
+                </NuxtLink>
               </div>
 
               <!-- Trust signals row -->
@@ -121,7 +117,7 @@
                   >
                     <Icon :name="stat.icon" class="w-4 h-4" />
                   </span>
-                  <span class="text-sm text-zinc-300 font-medium">{{
+                  <span class="text-sm text-gray-300 font-medium">{{
                     stat.label
                   }}</span>
                 </div>
@@ -137,16 +133,16 @@
               <div
                 v-for="(card, i) in statCards"
                 :key="card.value"
-                class="stat-card bg-white/8 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-5 min-w-[190px]"
+                class="stat-card bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 min-w-[190px]"
                 :style="`--card-delay: ${i * 80 + 400}ms`"
               >
                 <p
-                  class="text-[2rem] font-heading font-extrabold text-white leading-none mb-1"
+                  class="text-3xl font-sans font-extrabold text-white leading-none mb-1.5"
                 >
                   {{ card.value }}
                 </p>
                 <p
-                  class="text-xs text-zinc-400 font-medium uppercase tracking-widest"
+                  class="text-xs text-gray-300 font-medium uppercase tracking-widest"
                 >
                   {{ card.label }}
                 </p>
@@ -188,9 +184,9 @@ const trustStats = [
 ];
 
 const statCards = [
-  { value: "20+", label: "Media platforms" },
-  { value: "100%", label: "Managed in-house" },
-  { value: "1 partner", label: "All your media needs" },
+  { value: "Multi-Platform", label: "TV, Print & Digital" },
+  { value: "Kenya-wide", label: "Nairobi-Based" },
+  { value: "1 Partner", label: "End-to-End Solutions" },
 ];
 
 onMounted(() => {

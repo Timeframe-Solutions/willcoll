@@ -6,14 +6,14 @@
     <div class="relative z-10 py-20 lg:py-36 max-w-7xl mx-auto px-6 lg:px-10 text-center">
       <p class="text-orange-400 text-xs font-bold tracking-[0.15em] uppercase mb-5">Get started</p>
       <h2 class="font-heading font-bold text-3xl lg:text-5xl xl:text-6xl text-white leading-tight max-w-2xl mx-auto mb-6">
-        Let's plan your next campaign.
+        Tell us what you're trying to achieve.
       </h2>
       <p class="text-white/65 text-base lg:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-        Whether you are advertising, recruiting, publishing a notice or setting up a subscription, one enquiry is all it takes.
+        We'll help you determine the right media approach for your objective, audience and budget.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <SharedButton to="/contact" size="lg">Get a Media Quote</SharedButton>
-        <SharedButton to="/services" variant="outline-white" size="lg">Explore Services</SharedButton>
+        <SharedButton to="/contact" size="lg">Get a Media Recommendation</SharedButton>
+        <SharedButton to="/contact" variant="outline-white" size="lg">Talk to a Media Advisor</SharedButton>
       </div>
     </div>
   </section>

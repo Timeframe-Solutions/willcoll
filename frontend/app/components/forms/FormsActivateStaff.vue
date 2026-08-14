@@ -14,6 +14,8 @@ const form = reactive({
 const isSubmitting = ref(false)
 const status = ref<{ type: 'success' | 'error'; message: string } | null>(null)
 
+const { track } = useAnalytics()
+
 const submit = async () => {
   status.value = null
   isSubmitting.value = true
@@ -33,6 +35,7 @@ const submit = async () => {
       },
     })
     status.value = { type: 'success', message: 'Thank you. Our team will coordinate the access activation and be in touch.' }
+    track('staff_activation_submitted', { company: form.company })
     Object.assign(form, { company: '', referenceToken: '', contactName: '', email: '', phone: '', numberOfUsers: '', employeeEmails: '', instructions: '', website: '' })
   } catch (err: any) {
     status.value = { type: 'error', message: err?.data?.statusMessage || err?.statusMessage || err?.message || 'Unable to submit your request. Please try again.' }

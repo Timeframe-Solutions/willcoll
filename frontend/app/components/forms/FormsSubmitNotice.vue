@@ -31,6 +31,8 @@ const onFileChange = (e: Event) => {
   fileInput.value = input.files?.[0] || null
 }
 
+const { track } = useAnalytics()
+
 const submit = async () => {
   status.value = null
   isSubmitting.value = true
@@ -49,6 +51,7 @@ const submit = async () => {
     await $fetch('/api/submit-notice', { method: 'POST', body: fd })
 
     status.value = { type: 'success', message: 'Thank you. Your materials have been received and our team will process them.' }
+    track('notice_submitted', { noticeType: form.noticeType })
     Object.assign(form, { companyName: '', clientReference: '', contactName: '', email: '', phone: '', noticeType: '', instructions: '', website: '' })
     fileInput.value = null
     ;(document.getElementById('notice-file') as HTMLInputElement).value = ''
@@ -93,7 +96,7 @@ const submit = async () => {
       </select>
     </div>
     <div class="sm:col-span-2">
-      <label for="notice-file" class="block text-sm font-semibold text-ink-900 mb-2">File upload (PDF, Word, image, Excel or PowerPoint — max 10MB)</label>
+      <label for="notice-file" class="block text-sm font-semibold text-ink-900 mb-2">File upload (PDF, Word, image, Excel or PowerPoint, max 10MB)</label>
       <input id="notice-file" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx,.ppt,.pptx" @change="onFileChange" class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100 file:mr-3 file:rounded-md file:border-0 file:bg-orange-500 file:text-white file:px-4 file:py-2" />
     </div>
     <div class="sm:col-span-2">

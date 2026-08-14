@@ -9,16 +9,16 @@
           <p
             class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-3"
           >
-            Commercial Media Partner
+            Media Partner
           </p>
           <h2
             class="font-heading text-2xl lg:text-3xl text-ink-900 leading-tight mb-3"
           >
-            One partner across Kenya's leading media platforms.
+            One partner across Kenya's trusted media.
           </h2>
           <p class="text-gray-500 leading-relaxed">
-            Willcoll helps organizations plan, place and manage media across the
-            platforms Kenyans trust from television and print to digital.
+            Independent planning, buying and coordination across the television,
+            print and digital platforms your audience engages with.
           </p>
         </div>
         <div>

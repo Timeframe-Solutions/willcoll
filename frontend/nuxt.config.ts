@@ -69,15 +69,14 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: "en" },
-      title:
-        "Willcoll Agencies | Commercial Media Partner for Kenyan Businesses",
+      title: "Willcoll Agencies | Media Planning & Buying Partner in Kenya",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
           content:
-            "Willcoll helps Kenyan businesses plan, place and manage advertising, recruitment campaigns, public notices and corporate subscriptions through one commercial media partner.",
+            "Independent media planning, buying and execution for Kenyan organizations. Plan, compare, buy, execute, manage and report your advertising through one commercial partner.",
         },
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
