@@ -68,9 +68,9 @@
                 class="hero-item font-sans font-extrabold text-white leading-[1.1] tracking-tight mb-5 text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
                 style="--delay: 80ms"
               >
-                Make Every
-                <span class="text-orange-500">Media Shilling</span>
-                Work&nbsp;Harder.
+                Strategic
+                <span class="text-orange-500">Media Solutions</span>
+                built&nbsp;for&nbsp;Growth.
               </h1>
 
               <!-- Sub-copy -->
@@ -103,7 +103,7 @@
 
               <!-- Trust signals row -->
               <div
-                class="hero-item flex flex-wrap items-center gap-x-6 gap-y-3"
+                class="hero-item hidden md:flex flex-wrap items-center gap-x-6 gap-y-3"
                 style="--delay: 320ms"
               >
                 <div

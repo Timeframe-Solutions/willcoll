@@ -52,7 +52,7 @@ export interface InsightTopic {
 export const useContent = () => {
   const positioning = {
     eyebrow: 'Media Partner',
-    headline: 'Make Every Media Shilling Work Harder.',
+    headline: 'Strategic Media Solutions built for Growth.',
     subheadline:
       'Independent media planning, buying and execution for Kenyan organizations.',
     primaryCta: 'Get a Media Recommendation',
