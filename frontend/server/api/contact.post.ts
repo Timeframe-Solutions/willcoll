@@ -1,68 +1,52 @@
-import nodemailer from "nodemailer";
-import { z } from "zod";
+import { z } from 'zod'
 
 const schema = z.object({
   fullName: z.string().min(2),
   company: z.string().optional(),
+  jobTitle: z.string().optional(),
   email: z.string().email(),
   phone: z.string().optional(),
   service: z.string().optional(),
+  budget: z.string().optional(),
   message: z.string().min(10),
-});
+  website: z.string().optional(),
+})
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
-
-  console.log("Incoming body:", body);
-
-  const parsed = schema.safeParse(body);
+  const body = await readBody(event)
+  const parsed = schema.safeParse(body)
 
   if (!parsed.success) {
-    console.error(parsed.error.flatten());
-
     throw createError({
       statusCode: 400,
-      statusMessage: JSON.stringify(parsed.error.flatten()),
-    });
+      statusMessage: 'Please check your details and try again.',
+    })
   }
 
-  const data = parsed.data;
+  const data = parsed.data
 
-  const config = useRuntimeConfig();
+  // Honeypot — hidden field that humans never see; bots fill it.
+  if (data.website && data.website.length > 0) {
+    return { success: true }
+  }
 
-  const transporter = nodemailer.createTransport({
-    host: config.zohoHost,
-    port: 465,
-    secure: true,
-    auth: {
-      user: config.zohoUser,
-      pass: config.zohoPass,
-    },
-  });
-
-  await transporter.verify();
-
-  await transporter.sendMail({
-    from: config.zohoUser,
-    to: config.contactEmail,
-    replyTo: data.email,
+  await sendSiteMail({
     subject: `Website enquiry from ${data.fullName}`,
+    replyTo: data.email,
     html: `
       <h2>Website Enquiry</h2>
-
       <p><strong>Name:</strong> ${data.fullName}</p>
-      <p><strong>Company:</strong> ${data.company}</p>
+      <p><strong>Company:</strong> ${data.company || '—'}</p>
+      <p><strong>Job title:</strong> ${data.jobTitle || '—'}</p>
       <p><strong>Email:</strong> ${data.email}</p>
-      <p><strong>Phone:</strong> ${data.phone}</p>
-      <p><strong>Service:</strong> ${data.service}</p>
-
-      <hr>
-
+      <p><strong>Phone:</strong> ${data.phone || '—'}</p>
+      <p><strong>Service:</strong> ${data.service || '—'}</p>
+      <p><strong>Budget:</strong> ${data.budget || '—'}</p>
+      <hr />
       <p>${data.message}</p>
     `,
-  });
+  })
 
-  return {
-    success: true,
-  };
-});
+  return { success: true }
+})
+

@@ -1,64 +1,76 @@
 <template>
-  <!-- Services overview: editorial intro text + 7-service card grid -->
   <section class="py-16 lg:py-28 bg-white" aria-label="Services overview">
     <div class="max-w-7xl mx-auto px-6 lg:px-10">
-      <!-- Section heading — centered, editorial -->
       <SharedSectionHeading
-        eyebrow="Our Practice Areas"
-        heading="One Advisory Partner"
-        subhead="From getting your compliance right to completion of your project, we cover the full lifecycle of business advisory needs under one roof."
+        eyebrow="Our services"
+        heading="Four services. One commercial partner."
+        subhead="Plan, place and manage advertising, recruitment, publications and subscriptions  through a single point of contact."
         :centered="true"
       />
 
-      <!-- Services grid: 1 → 2 → 3 columns, last row centered if 7 items -->
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-      >
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <NuxtLink
-          v-for="service in services"
+          v-for="service in primaryServices"
           :key="service.id"
           :to="service.to"
-          class="group relative flex flex-col bg-white border border-gray-100 rounded-xl p-7 transition-all duration-200 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
-          style="box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04)"
-          :style-hover="'box-shadow: 0 4px 12px rgba(17,17,17,0.06);'"
+          class="group relative flex flex-col bg-white border border-gray-100 rounded-2xl p-8 hover:-translate-y-1 hover:shadow-xl hover:border-orange-200 transition-all duration-300 overflow-hidden"
         >
-          <!-- Hover shadow handled via Tailwind -->
           <div
-            class="absolute inset-0 rounded-xl transition-shadow duration-200 group-hover:shadow-md pointer-events-none"
+            class="absolute top-0 right-0 w-24 h-24 rounded-bl-full opacity-[0.06]"
+            :style="{ background: service.accentColor }"
+            aria-hidden="true"
           />
-
-          <!-- Icon tile -->
-          <SharedIconTile :icon="service.icon" size="md" class="mb-5" />
-
-          <!-- Name -->
-          <h3
-            class="font-heading font-bold text-xl text-ink-900 leading-snug mb-2 group-hover:text-orange-600 transition-colors"
-          >
+          <div class="flex items-center gap-4 mb-5">
+            <SharedIconTile :icon="service.icon" size="lg" />
+            <span
+              class="text-xs font-bold uppercase tracking-[0.15em] text-orange-500"
+              >{{ service.navLabel }}</span
+            >
+          </div>
+          <h3 class="font-heading text-2xl text-ink-900 leading-snug mb-3">
             {{ service.name }}
           </h3>
-
-          <!-- Outcome line -->
-          <p class="text-gray-500 text-sm leading-relaxed flex-1">
-            {{ service.outcome }}
+          <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
+            {{ service.coreMessage }}
           </p>
-
-          <!-- Explore link -->
           <div
-            class="mt-5 flex items-center gap-1.5 text-sm font-semibold text-orange-600 group-hover:gap-2.5 transition-all"
+            class="flex items-center gap-2 text-orange-600 text-sm font-semibold group-hover:gap-3 transition-all"
           >
-            <span>Explore</span>
-            <Icon
-              name="lucide:arrow-right"
-              class="w-4 h-4"
-              aria-hidden="true"
-            />
+            <span>{{ service.ctaText }}</span>
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
           </div>
         </NuxtLink>
       </div>
+
+      <NuxtLink
+        to="/services/media-buying-advisory"
+        class="mt-8 block group bg-ink-900 rounded-2xl p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+      >
+        <div>
+          <p
+            class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2"
+          >
+            Media Buying & Advisory
+          </p>
+          <h3 class="font-heading text-xl lg:text-2xl text-white leading-snug">
+            The expertise that connects every service.
+          </h3>
+          <p class="text-gray-400 text-sm mt-2 leading-relaxed max-w-2xl">
+            Media strategy, planning, selection and buying the commercial layer
+            behind our advertising, recruitment, publishing and subscription
+            work.
+          </p>
+        </div>
+        <span
+          class="inline-flex items-center gap-2 text-orange-400 text-sm font-semibold whitespace-nowrap group-hover:gap-3 transition-all"
+        >
+          Talk to an Advisor <Icon name="lucide:arrow-right" class="w-4 h-4" />
+        </span>
+      </NuxtLink>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-const { services } = useServices();
+const { primaryServices } = useServices();
 </script>

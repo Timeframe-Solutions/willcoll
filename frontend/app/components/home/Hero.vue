@@ -1,94 +1,266 @@
 <template>
-  <!-- Full-bleed hero: warm photography + precise mobile-first charcoal overlay + low content alignment -->
   <section
-    class="relative min-h-screen min-h-[100dvh] flex items-end overflow-hidden bg-zinc-950"
+    ref="sectionRef"
+    class="hero-section relative flex flex-col overflow-hidden bg-zinc-950"
     aria-label="Hero"
   >
-    <!-- Background photo with neutral dark-grey/charcoal overlays -->
-    <div class="absolute inset-0 z-0 bg-zinc-900">
+    <!-- Background image + layered gradient system -->
+    <div class="absolute inset-0 z-0">
       <img
         src="/images/nairobi-skyline.jpg"
-        alt="Nairobi skyline and Central Business District under daylight"
+        alt="Nairobi skyline and Central Business District"
         class="w-full h-full object-cover object-center"
+        fetchpriority="high"
       />
-      <!-- Neutral dark-grey/charcoal gradient overlay for WCAG AAA accessibility -->
+      <!-- Mobile: strong bottom-up dark gradient -->
       <div
-        class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/40 lg:bg-gradient-to-r lg:from-zinc-950/90 lg:via-zinc-950/70 lg:to-transparent"
+        class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/30 lg:hidden"
+        aria-hidden="true"
+      />
+      <!-- Desktop: side gradient, lets image breathe on the right -->
+      <div
+        class="absolute inset-0 hidden lg:block bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-zinc-950/15 xl:to-transparent"
+        aria-hidden="true"
+      />
+      <!-- Universal top scrim for navbar legibility -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent"
         aria-hidden="true"
       />
     </div>
 
-    <!-- Organic amber blob accent — bottom right, very subtle -->
-    <div
-      class="absolute bottom-[-80px] right-[-60px] w-72 h-72 bg-amber-500/10 z-0 pointer-events-none"
-      style="border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%"
-      aria-hidden="true"
-    />
+    <!-- Main content — fills the viewport height -->
+    <div class="relative z-10 flex flex-col flex-1 min-h-[100dvh]">
+      <!-- Navbar spacer -->
+      <div class="h-20 sm:h-24 flex-shrink-0" aria-hidden="true" />
 
-    <!-- Hero content container: lower alignment on mobile with ample bottom padding -->
-    <div
-      class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-16 sm:pb-24 lg:py-40"
-    >
-      <div class="max-w-2xl text-left">
-        <!-- Tagline: Small uppercase pill badge -->
-        <div class="inline-block mb-5">
-          <span
-            class="px-3 py-1 text-xs font-bold tracking-[0.2em] text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full uppercase"
-          >
-            Advisory
-          </span>
-        </div>
-
-        <!-- Headline: High Contrast Text -->
-        <h1
-          class="font-heading font-extrabold text-white leading-tight tracking-tight text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6"
+      <!-- Hero body: bottom-weighted on mobile, centred on desktop -->
+      <div class="flex-1 flex items-end lg:items-center">
+        <div
+          class="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 pb-20 sm:pb-28 lg:pb-0 lg:py-20"
         >
-          Engage Trusted Partners for Your Business Growth
-        </h1>
-
-        <!-- Subheadline: constrained text width using light neutral grey -->
-        <p
-          class="text-zinc-300 text-base sm:text-lg leading-relaxed mb-10 max-w-xl"
-        >
-          Willcoll Agencies helps individuals, SMEs, Corporates, and
-          organisations achieve compliance, manage risks, and drive growth with
-          expertise and personalized advice.
-        </p>
-
-        <!-- CTAs: Mobile-first actions with minimum 44px touch targets -->
-        <div class="flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-stretch sm:items-center">
-          <SharedButton
-            to="/contact"
-            variant="primary"
-            size="lg"
-            class="w-full sm:w-auto text-center justify-center min-h-[48px] py-3.5 transition-all duration-200 hover:-translate-y-0.5"
+          <!-- Grid: copy left | stat cards right (XL+) -->
+          <div
+            class="grid xl:grid-cols-[1fr_auto] gap-10 xl:gap-16 items-center"
           >
-            Book a Consultation
-          </SharedButton>
-          <SharedButton
-            to="/services"
-            variant="outline-white"
-            size="lg"
-            class="w-full sm:w-auto text-center justify-center min-h-[48px] py-3.5 transition-all duration-200 hover:bg-white/10 hover:border-white/45"
-          >
-            Explore Our Services
-          </SharedButton>
+            <!-- Copy column -->
+            <div
+              class="max-w-2xl xl:max-w-3xl hero-content"
+              :class="{ 'is-revealed': revealed }"
+            >
+              <!-- Badge -->
+              <div class="hero-item" style="--delay: 0ms">
+                <span
+                  class="inline-flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-bold tracking-[0.18em] text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full uppercase mb-5"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  Commercial Media Partner
+                </span>
+              </div>
+
+              <!-- Headline with fluid type scaling -->
+              <h1
+                class="hero-item font-heading font-extrabold text-white leading-[1.1] tracking-tight mb-5"
+                style="--delay: 80ms; font-size: clamp(1.875rem, 5.5vw, 4rem)"
+              >
+                Your Commercial Gateway to&nbsp;Kenya's
+                <em class="not-italic text-orange-400">Leading&nbsp;Media</em>
+                Platforms
+              </h1>
+
+              <!-- Sub-copy -->
+              <p
+                class="hero-item text-zinc-300 leading-relaxed mb-9 max-w-xl xl:max-w-2xl"
+                style="--delay: 160ms; font-size: clamp(1rem, 1.4vw, 1.125rem)"
+              >
+                From advertising and recruitment campaigns to public notices and
+                corporate subscriptions. Willcoll helps businesses plan, place
+                and manage their media requirements through one trusted
+                commercial partner.
+              </p>
+
+              <!-- CTA row -->
+              <div
+                class="hero-item flex flex-col sm:flex-row gap-3.5 mb-10 sm:mb-12"
+                style="--delay: 240ms"
+              >
+                <SharedButton
+                  to="/contact"
+                  variant="primary"
+                  size="lg"
+                  class="w-full sm:w-auto justify-center min-h-[52px]"
+                >
+                  Get a Media Quote
+                </SharedButton>
+                <SharedButton
+                  to="/services"
+                  variant="outline-white"
+                  size="lg"
+                  class="w-full sm:w-auto justify-center min-h-[52px] hover:bg-white/10 hover:border-white/40"
+                >
+                  Explore Services
+                </SharedButton>
+              </div>
+
+              <!-- Trust signals row -->
+              <div
+                class="hero-item flex flex-wrap items-center gap-x-6 gap-y-3"
+                style="--delay: 320ms"
+              >
+                <div
+                  v-for="stat in trustStats"
+                  :key="stat.label"
+                  class="flex items-center gap-2"
+                >
+                  <span
+                    class="text-orange-400 flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    <Icon :name="stat.icon" class="w-4 h-4" />
+                  </span>
+                  <span class="text-sm text-zinc-300 font-medium">{{
+                    stat.label
+                  }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating stat cards — visible XL+ only -->
+            <div
+              class="hidden xl:flex flex-col gap-4 hero-cards"
+              :class="{ 'is-revealed': revealed }"
+              aria-hidden="true"
+            >
+              <div
+                v-for="(card, i) in statCards"
+                :key="card.value"
+                class="stat-card bg-white/8 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-5 min-w-[190px]"
+                :style="`--card-delay: ${i * 80 + 400}ms`"
+              >
+                <p
+                  class="text-[2rem] font-heading font-extrabold text-white leading-none mb-1"
+                >
+                  {{ card.value }}
+                </p>
+                <p
+                  class="text-xs text-zinc-400 font-medium uppercase tracking-widest"
+                >
+                  {{ card.label }}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Scroll cue -->
+    <!-- Scroll indicator -->
     <div
-      class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60 hidden sm:flex"
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-1.5 opacity-50"
+      aria-hidden="true"
     >
-      <span class="text-white text-[10px] tracking-widest uppercase animate-pulse"
+      <span
+        class="text-white text-[9px] tracking-[0.25em] uppercase font-medium"
         >Scroll</span
       >
-      <div class="w-px h-10 bg-white/30 overflow-hidden relative">
+      <div class="w-px h-9 overflow-hidden relative rounded-full bg-white/20">
         <div
-          class="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-line"
+          class="absolute top-0 left-0 w-full h-1/2 bg-white/80 rounded-full animate-scroll-line"
         />
       </div>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+
+const sectionRef = ref<HTMLElement | null>(null);
+const revealed = ref(false);
+
+const trustStats = [
+  { icon: "lucide:building-2", label: "Nairobi-based, Kenya-wide" },
+  { icon: "lucide:shield-check", label: "Trusted commercial partner" },
+  { icon: "lucide:layers", label: "TV, Print & Digital" },
+];
+
+const statCards = [
+  { value: "20+", label: "Media platforms" },
+  { value: "100%", label: "Managed in-house" },
+  { value: "1 partner", label: "All your media needs" },
+];
+
+onMounted(() => {
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      revealed.value = true;
+    }, 100);
+  });
+});
+</script>
+
+<style scoped>
+.hero-section {
+  min-height: 100dvh;
+}
+
+/* Staggered slide-up reveal for copy items */
+.hero-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+
+.hero-content.is-revealed .hero-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stat cards slide in from the right */
+.stat-card {
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--card-delay, 400ms);
+}
+
+.hero-cards.is-revealed .stat-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scroll indicator animation */
+@keyframes scrollLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.animate-scroll-line {
+  animation: scrollLine 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-item,
+  .stat-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-scroll-line {
+    animation: none;
+  }
+}
+</style>

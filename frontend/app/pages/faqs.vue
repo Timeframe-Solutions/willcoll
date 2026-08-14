@@ -1,43 +1,38 @@
 <script setup lang="ts">
-useHead({ title: "Frequently Asked Questions | Willcoll Agencies" });
+useHead({ title: 'Frequently Asked Questions | Willcoll Agencies' })
+
 const items = [
   {
-    question: "What size of business do you typically work with?",
-    answer:
-      "We primarily work with SMEs, startups, family-owned businesses, NGOs, and SACCOs — as well as investors and corporates seeking specialized advisory support.",
+    question: 'What does Willcoll do?',
+    answer: "Willcoll is an independent commercial media partner. We help businesses and organizations plan, place and manage advertising, recruitment campaigns, public notices and corporate subscriptions across Kenya's leading media platforms.",
   },
   {
-    question: "How does an engagement typically start?",
-    answer:
-      "Every engagement begins with a free initial consultation to understand your specific business problem before we propose a scope of work.",
+    question: 'How do I get a quote?',
+    answer: "Send us your requirement through the Get a Media Quote form. Our team will respond with next steps and, where possible, an indicative quote. Final rates and availability are confirmed by the relevant media house.",
   },
   {
-    question: "Do you offer support across multiple service areas at once?",
-    answer:
-      "Yes. Many clients engage us across more than one practice area — for example, compliance and risk together, or transformation and transaction advisory in sequence.",
+    question: 'Which media platforms do you work with?',
+    answer: "We work with Kenya's leading media platforms, including NTV, Daily Nation and Nation.africa, as well as other relevant media depending on your objectives.",
   },
   {
-    question: "How is pricing structured?",
-    answer:
-      "Pricing is scoped to each engagement based on complexity and duration. We do not use one-size-fits-all retainers; every proposal reflects the actual work required.",
+    question: 'Do I need to create an account?',
+    answer: 'No. Enquiries are simple and form-based. There is no registration or login required to get started.',
   },
   {
-    question: "Is our information kept confidential?",
-    answer:
-      "Yes. Confidentiality is standard across all engagements, particularly for compliance, risk, and transaction advisory work involving sensitive financial or operational information.",
+    question: 'I am an existing client. How do I submit a notice?',
+    answer: 'Use the Submit Notice page under Client Portal to send your publication materials securely for processing.',
   },
   {
-    question: "Do you work outside Nairobi?",
-    answer:
-      "Our office is based in Nairobi, and we serve clients across Kenya, with engagement models adapted to remote and on-site delivery as needed.",
+    question: 'How is pricing determined?',
+    answer: 'Pricing depends on the media house, format and timing of your requirement. We provide an indicative quote and confirm final rates with the media house before you commit.',
   },
   {
-    question: "How long does a typical engagement take?",
-    answer:
-      "Timelines vary by service. We provide a clear timeline at proposal stage based on the work required.",
+    question: 'Do you serve organizations outside Nairobi?',
+    answer: 'Yes. We are based in Nairobi and serve businesses and institutions across Kenya.',
   },
-];
+]
 </script>
+
 <template>
   <div>
     <SharedPageHero
@@ -51,10 +46,8 @@ const items = [
         <SharedAccordion :items="items" />
         <div class="mt-12 rounded-2xl bg-ink-900 p-8 text-center">
           <h2 class="text-white text-2xl mb-3">Still have a question?</h2>
-          <p class="text-gray-300 mb-6">
-            A short conversation is the fastest way to get a useful answer.
-          </p>
-          <SharedButton to="/contact">Talk to Our Team</SharedButton>
+          <p class="text-gray-300 mb-6">A short conversation is the fastest way to get a useful answer.</p>
+          <SharedButton to="/contact">Get a Media Quote</SharedButton>
         </div>
       </div>
     </section>

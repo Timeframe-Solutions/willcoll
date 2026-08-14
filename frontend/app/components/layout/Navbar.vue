@@ -1,331 +1,126 @@
 <template>
-  <!-- Pre-scroll gradient scrim so nav text is readable over hero photography -->
   <div
     class="fixed top-0 left-0 right-0 h-28 pointer-events-none z-40 transition-opacity duration-300"
     :class="isScrolled ? 'opacity-0' : 'opacity-100'"
-    style="
-      background: linear-gradient(
-        to bottom,
-        rgba(17, 17, 17, 0.55) 0%,
-        transparent 100%
-      );
-    "
+    style="background: linear-gradient(to bottom, rgba(17,17,17,0.55) 0%, transparent 100%)"
   />
 
   <header
     class="fixed top-0 left-0 right-0 z-[80] transition-all duration-300"
-    :class="[
-      isScrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3'
-        : 'bg-transparent py-5',
-    ]"
+    :class="isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-3' : 'bg-transparent py-5'"
   >
-    <div
-      class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between"
-    >
-      <!-- Desktop Navigation Left -->
-      <nav
-        class="hidden lg:flex items-center space-x-8 flex-1 justify-end mr-8"
-      >
-        <NuxtLink
-          to="/about"
-          class="font-sans text-sm font-semibold tracking-wide nav-link-underline transition-colors py-2"
-          :class="
-            isScrolled
-              ? 'text-ink-900 hover:text-orange-500'
-              : 'text-white hover:text-orange-200'
-          "
-        >
-          About
-        </NuxtLink>
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4">
+      <NuxtLink to="/" class="flex items-center flex-shrink-0">
+        <img src="/images/logo/willcoll logo.webp" alt="Willcoll Agencies logo" class="h-9 w-9 object-contain" />
+        <div class="flex flex-col ml-3">
+          <span class="font-heading font-black tracking-tight text-lg leading-none" :class="isScrolled ? 'text-ink-900' : 'text-white'">WILLCOLL</span>
+          <span class="text-[9px] font-bold tracking-[0.22em] leading-none mt-1" :class="isScrolled ? 'text-gray-500' : 'text-gray-400'">AGENCIES</span>
+        </div>
+      </NuxtLink>
 
-        <!-- Services Dropdown Trigger -->
-        <div
-          class="relative group"
-          @mouseenter="openDropdown"
-          @mouseleave="closeDropdown"
-        >
-          <NuxtLink
-            to="/services"
-            class="font-sans text-sm font-semibold tracking-wide flex items-center gap-1 transition-colors py-2"
-            :class="
-              isScrolled
-                ? 'text-ink-900 hover:text-orange-500'
-                : 'text-white hover:text-orange-200'
-            "
-          >
+      <nav class="hidden lg:flex items-center flex-1 justify-center gap-0.5">
+        <NuxtLink to="/" class="px-3 py-2 text-sm font-semibold transition-colors" :class="linkClass">Home</NuxtLink>
+
+        <div class="relative" @mouseenter="openDropdown('services')" @mouseleave="scheduleClose">
+          <NuxtLink to="/services" class="px-3 py-2 text-sm font-semibold flex items-center gap-1 transition-colors" :class="linkClass">
             Services
-            <Icon
-              name="lucide:chevron-down"
-              class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
-            />
+            <Icon name="lucide:chevron-down" class="w-4 h-4" :class="dropdown === 'services' ? 'rotate-180' : ''" />
           </NuxtLink>
-
-          <!-- Services Mega Menu Dropdown -->
           <transition
             enter-active-class="transition duration-200 ease-out"
-            enter-from-class="opacity-0 translate-y-2 pointer-events-none"
+            enter-from-class="opacity-0 translate-y-2"
             enter-to-class="opacity-100 translate-y-0"
             leave-active-class="transition duration-150 ease-in"
             leave-from-class="opacity-100 translate-y-0"
-            leave-to-class="opacity-0 translate-y-2 pointer-events-none"
+            leave-to-class="opacity-0 translate-y-2"
           >
-            <div
-              v-show="isDropdownOpen"
-              class="absolute right-[-150px] top-full mt-2 w-[580px] bg-white rounded-lg border border-gray-100 shadow-lg p-6 grid grid-cols-2 gap-4"
-            >
-              <div
-                class="col-span-2 border-b border-gray-100 pb-3 mb-2 flex justify-between items-center"
-              >
-                <span
-                  class="text-xs font-semibold tracking-wider text-gray-500 uppercase"
-                  >Advisory Practice Areas</span
-                >
-                <NuxtLink
-                  to="/services"
-                  class="text-xs font-bold text-orange-500 hover:underline"
-                >
-                  All Services &rarr;
-                </NuxtLink>
-              </div>
-
-              <NuxtLink
-                v-for="service in services"
-                :key="service.id"
-                :to="service.to"
-                class="flex gap-3 p-2.5 rounded-md hover:bg-gray-50 transition-colors group/item"
-              >
-                <div
-                  class="flex-shrink-0 w-8 h-8 rounded bg-orange-100 text-orange-500 flex items-center justify-center"
-                >
-                  <Icon :name="service.icon" class="w-4 h-4" />
-                </div>
-                <div>
-                  <h4
-                    class="text-sm font-semibold text-ink-900 group-hover/item:text-orange-500 transition-colors leading-tight"
-                  >
-                    {{ service.name }}
-                  </h4>
-                  <p class="text-xs text-gray-500 mt-1 line-clamp-1">
-                    {{ service.subhead }}
-                  </p>
-                </div>
+            <div v-show="dropdown === 'services'" class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[460px] bg-white rounded-xl border border-gray-100 shadow-lg p-3">
+              <NuxtLink v-for="s in services" :key="s.id" :to="s.to" class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center shrink-0">
+                  <Icon :name="s.icon" class="w-4 h-4" />
+                </span>
+                <span>
+                  <span class="block text-sm font-semibold text-ink-900">{{ s.navLabel }}</span>
+                  <span class="block text-xs text-gray-500">{{ s.name }}</span>
+                </span>
               </NuxtLink>
             </div>
           </transition>
         </div>
 
-        <NuxtLink
-          to="/industries"
-          class="font-sans text-sm font-semibold tracking-wide nav-link-underline transition-colors py-2"
-          :class="
-            isScrolled
-              ? 'text-ink-900 hover:text-orange-500'
-              : 'text-white hover:text-orange-200'
-          "
-        >
-          Industries
-        </NuxtLink>
+        <NuxtLink to="/how-it-works" class="px-3 py-2 text-sm font-semibold transition-colors" :class="linkClass">How It Works</NuxtLink>
+        <NuxtLink to="/corporate-solutions" class="px-3 py-2 text-sm font-semibold transition-colors" :class="linkClass">Corporate Solutions</NuxtLink>
+        <NuxtLink to="/about" class="px-3 py-2 text-sm font-semibold transition-colors" :class="linkClass">About</NuxtLink>
+        <NuxtLink to="/contact" class="px-3 py-2 text-sm font-semibold transition-colors" :class="linkClass">Contact</NuxtLink>
       </nav>
 
-      <!-- Center Logo -->
-      <NuxtLink to="/" class="flex items-center group z-50">
-        <!-- Monogram Logo Container -->
-        <div class="flex items-center">
-          <img
-            src="/images/logo/willcoll logo.webp"
-            alt="Willcoll Agencies logo"
-            class="h-9 w-9 flex-shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
-          />
-          <!-- Typography Wordmark -->
-          <div class="flex flex-col ml-3 text-left">
-            <span
-              class="font-heading font-black tracking-tight text-lg leading-none transition-colors duration-300 group-hover:text-orange-500"
-              :class="isScrolled ? 'text-ink-900' : 'text-white'"
-            >
-              WILLCOLL
-            </span>
-            <span
-              class="font-sans tracking-[0.22em] text-[9px] font-bold leading-none mt-1 transition-colors duration-300"
-              :class="isScrolled ? 'text-gray-500' : 'text-white/70'"
-            >
-              AGENCIES
-            </span>
-          </div>
-        </div>
-      </NuxtLink>
-
-      <!-- Desktop Navigation Right -->
-      <nav
-        class="hidden lg:flex items-center space-x-8 flex-1 justify-start ml-8"
-      >
-        <NuxtLink
-          to="/why-choose-us"
-          class="font-sans text-sm font-semibold tracking-wide nav-link-underline transition-colors py-2"
-          :class="
-            isScrolled
-              ? 'text-ink-900 hover:text-orange-500'
-              : 'text-white hover:text-orange-200'
-          "
-        >
-          Why Choose Us
-        </NuxtLink>
-        <NuxtLink
-          to="/insights"
-          class="font-sans text-sm font-semibold tracking-wide nav-link-underline transition-colors py-2"
-          :class="
-            isScrolled
-              ? 'text-ink-900 hover:text-orange-500'
-              : 'text-white hover:text-orange-200'
-          "
-        >
-          Insights
-        </NuxtLink>
-        <div class="pl-2">
-          <SharedButton
-            to="/contact"
-            size="sm"
-            :variant="isScrolled ? 'primary' : 'outline-white'"
+      <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
+        <div class="relative" @mouseenter="openDropdown('portal')" @mouseleave="scheduleClose">
+          <button type="button" class="px-3 py-2 text-sm font-semibold flex items-center gap-1 transition-colors" :class="linkClass">
+            Client Portal
+            <Icon name="lucide:chevron-down" class="w-4 h-4" :class="dropdown === 'portal' ? 'rotate-180' : ''" />
+          </button>
+          <transition
+            enter-active-class="transition duration-200 ease-out"
+            enter-from-class="opacity-0 translate-y-2"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition duration-150 ease-in"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 translate-y-2"
           >
-            Book Consultation
-          </SharedButton>
+            <div v-show="dropdown === 'portal'" class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl border border-gray-100 shadow-lg p-2">
+              <NuxtLink to="/submit-notice" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-ink-900 hover:bg-gray-50">Submit Notice</NuxtLink>
+              <NuxtLink to="/activate-staff" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-ink-900 hover:bg-gray-50">Activate Staff</NuxtLink>
+            </div>
+          </transition>
         </div>
-      </nav>
+        <SharedButton to="/contact" size="sm">Get a Media Quote</SharedButton>
+      </div>
 
-      <!-- Mobile Hamburger Button -->
-      <button
-        @click="toggleMobileMenu"
-        class="relative lg:hidden p-2 focus:outline-none z-50 transition-colors"
-        :class="isScrolled ? 'text-ink-900' : 'text-white'"
-        :aria-expanded="isMobileMenuOpen"
-        aria-label="Toggle menu"
-      >
-        <Icon
-          :name="isMobileMenuOpen ? 'lucide:x' : 'lucide:menu'"
-          class="w-6 h-6"
-        />
+      <button class="lg:hidden p-2" :class="isScrolled ? 'text-ink-900' : 'text-white'" @click="isMobileMenuOpen = !isMobileMenuOpen" aria-label="Toggle menu">
+        <Icon name="lucide:menu" class="w-6 h-6" />
       </button>
     </div>
   </header>
 
   <Teleport to="body">
-    <!-- Mobile Drawer Overlay -->
     <transition
-      enter-active-class="transition duration-300 ease-out"
+      enter-active-class="transition duration-200 ease-out"
       enter-from-class="opacity-0"
       enter-to-class="opacity-100"
-      leave-active-class="transition duration-200 ease-in"
+      leave-active-class="transition duration-150 ease-in"
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div
-        v-show="isMobileMenuOpen"
-        class="fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-[60] lg:hidden"
-        @click="isMobileMenuOpen = false"
-      />
-    </transition>
-
-    <!-- Mobile Drawer Menu -->
-    <transition
-      enter-active-class="transition duration-300 ease-out"
-      enter-from-class="translate-x-full"
-      enter-to-class="translate-x-0"
-      leave-active-class="transition duration-200 ease-in"
-      leave-from-class="translate-x-0"
-      leave-to-class="translate-x-full"
-    >
-      <div
-        v-show="isMobileMenuOpen"
-        class="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-white shadow-xl z-[70] p-6 pt-24 flex flex-col justify-between overflow-y-auto lg:hidden"
-      >
-        <div class="space-y-6">
-          <NuxtLink
-            to="/"
-            @click="isMobileMenuOpen = false"
-            class="block text-lg font-bold text-ink-900 hover:text-orange-500"
-          >
-            Home
-          </NuxtLink>
-          <NuxtLink
-            to="/about"
-            @click="isMobileMenuOpen = false"
-            class="block text-lg font-bold text-ink-900 hover:text-orange-500"
-          >
-            About
-          </NuxtLink>
-
-          <!-- Services Accordion in Mobile Nav -->
-          <div>
-            <button
-              @click="isMobileServicesOpen = !isMobileServicesOpen"
-              class="w-full flex items-center justify-between text-lg font-bold text-ink-900 hover:text-orange-500 focus:outline-none"
-            >
-              <span>Services</span>
-              <Icon
-                name="lucide:chevron-down"
-                class="w-5 h-5 transition-transform"
-                :class="{ 'rotate-180': isMobileServicesOpen }"
-              />
+      <div v-if="isMobileMenuOpen" class="fixed inset-0 z-[90] lg:hidden">
+        <div class="absolute inset-0 bg-ink-900/60" @click="isMobileMenuOpen = false" />
+        <div class="absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white overflow-y-auto p-6">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-heading font-black text-lg text-ink-900">Menu</span>
+            <button @click="isMobileMenuOpen = false" aria-label="Close menu" class="text-gray-500">
+              <Icon name="lucide:x" class="w-6 h-6" />
             </button>
-            <div
-              v-show="isMobileServicesOpen"
-              class="mt-3 pl-4 border-l-2 border-gray-100 space-y-3"
-            >
-              <NuxtLink
-                v-for="service in services"
-                :key="service.id"
-                :to="service.to"
-                @click="isMobileMenuOpen = false"
-                class="block text-sm text-gray-700 hover:text-orange-500"
-              >
-                {{ service.name }}
-              </NuxtLink>
-              <NuxtLink
-                to="/services"
-                @click="isMobileMenuOpen = false"
-                class="block text-sm font-semibold text-orange-500 hover:underline"
-              >
-                All Services Overview &rarr;
-              </NuxtLink>
-            </div>
           </div>
 
-          <NuxtLink
-            to="/industries"
-            @click="isMobileMenuOpen = false"
-            class="block text-lg font-bold text-ink-900 hover:text-orange-500"
-          >
-            Industries
-          </NuxtLink>
-          <NuxtLink
-            to="/why-choose-us"
-            @click="isMobileMenuOpen = false"
-            class="block text-lg font-bold text-ink-900 hover:text-orange-500"
-          >
-            Why Choose Us
-          </NuxtLink>
-          <NuxtLink
-            to="/insights"
-            @click="isMobileMenuOpen = false"
-            class="block text-lg font-bold text-ink-900 hover:text-orange-500"
-          >
-            Insights
-          </NuxtLink>
-        </div>
-
-        <div class="mt-8 border-t border-gray-100 pt-6 space-y-4">
-          <div class="text-xs text-gray-500 flex flex-col gap-1">
-            <span class="font-bold text-ink-900">Office Contact</span>
-            <span>0722 550 893</span>
-            <span>Pension Towers, Loita Street, Nairobi</span>
+          <NuxtLink to="/" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Home</NuxtLink>
+          <NuxtLink to="/services" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Services</NuxtLink>
+          <div class="pl-4 pb-2 space-y-2">
+            <NuxtLink v-for="s in services" :key="s.id" :to="s.to" class="block text-sm text-gray-600 py-1" @click="isMobileMenuOpen = false">
+              {{ s.navLabel }} — {{ s.name }}
+            </NuxtLink>
           </div>
-          <SharedButton
-            to="/contact"
-            class="w-full"
-            @click="isMobileMenuOpen = false"
-          >
-            Book Consultation
-          </SharedButton>
+          <NuxtLink to="/how-it-works" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">How It Works</NuxtLink>
+          <NuxtLink to="/corporate-solutions" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Corporate Solutions</NuxtLink>
+          <NuxtLink to="/about" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">About</NuxtLink>
+          <NuxtLink to="/contact" class="block py-3 text-lg font-bold text-ink-900" @click="isMobileMenuOpen = false">Contact</NuxtLink>
+
+          <div class="border-t border-gray-100 mt-6 pt-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Existing clients</p>
+            <NuxtLink to="/submit-notice" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Submit Notice</NuxtLink>
+            <NuxtLink to="/activate-staff" class="block py-2 text-sm text-gray-700" @click="isMobileMenuOpen = false">Activate Staff</NuxtLink>
+          </div>
+
+          <SharedButton to="/contact" class="w-full mt-6" @click="isMobileMenuOpen = false">Get a Media Quote</SharedButton>
         </div>
       </div>
     </transition>
@@ -333,43 +128,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
-const { services } = useServices();
+const { services } = useServices()
 
-const isScrolled = ref(false);
-const isDropdownOpen = ref(false);
-const isMobileMenuOpen = ref(false);
-const isMobileServicesOpen = ref(false);
+const isScrolled = ref(false)
+const dropdown = ref<string | null>(null)
+const isMobileMenuOpen = ref(false)
+let closeTimer: ReturnType<typeof setTimeout> | null = null
 
-let dropdownTimer: ReturnType<typeof setTimeout> | null = null;
+const linkClass = computed(() =>
+  isScrolled.value ? 'text-ink-900 hover:text-orange-500' : 'text-white hover:text-orange-200',
+)
 
-const openDropdown = () => {
-  if (dropdownTimer) clearTimeout(dropdownTimer);
-  isDropdownOpen.value = true;
-};
+const openDropdown = (name: string) => {
+  if (closeTimer) clearTimeout(closeTimer)
+  dropdown.value = name
+}
 
-const closeDropdown = () => {
-  dropdownTimer = setTimeout(() => {
-    isDropdownOpen.value = false;
-  }, 100);
-};
-
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
-};
+const scheduleClose = () => {
+  closeTimer = setTimeout(() => {
+    dropdown.value = null
+  }, 120)
+}
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20;
-};
+  isScrolled.value = window.scrollY > 20
+}
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-  // Run once to initialize in case user refreshed down the page
-  handleScroll();
-});
+  window.addEventListener('scroll', handleScroll)
+  handleScroll()
+})
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+  window.removeEventListener('scroll', handleScroll)
+  if (closeTimer) clearTimeout(closeTimer)
+})
 </script>
+

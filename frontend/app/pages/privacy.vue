@@ -26,15 +26,15 @@ useHead({ title: "Privacy Policy | Willcoll Agencies" });
         <h2>Confidentiality and security</h2>
         <p>
           We take reasonable steps to protect information shared with us.
-          Information relating to advisory engagements is handled with
+          Information relating to client engagements is handled with
           appropriate confidentiality.
         </p>
         <h2>Contact us</h2>
         <p>
           If you have a question about this policy or your information, please
           contact us at
-          <a href="mailto:info@willcollagencies.co.ke"
-            >info@willcollagencies.co.ke</a
+          <a href="mailto:info@willcoll.co.ke"
+            >info@willcoll.co.ke</a
           >.
         </p>
       </div>

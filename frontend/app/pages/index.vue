@@ -1,46 +1,99 @@
+<script setup lang="ts">
+const teams = [
+  "Marketing Teams",
+  "HR Teams",
+  "Procurement Teams",
+  "Corporate Communications",
+  "Administration",
+];
+
+useHead({
+  title: "Willcoll Agencies | Commercial Media Partner for Kenyan Businesses",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Willcoll helps Kenyan businesses plan, place and manage advertising, recruitment campaigns, public notices and corporate subscriptions through one commercial media partner.",
+    },
+    {
+      property: "og:title",
+      content:
+        "Willcoll Agencies | Commercial Media Partner for Kenyan Businesses",
+    },
+    {
+      property: "og:description",
+      content:
+        "Your commercial gateway to Kenya's leading media platforms — advertising, recruitment, notices and subscriptions through one partner.",
+    },
+    { property: "og:type", content: "website" },
+  ],
+});
+</script>
+
 <template>
   <div>
-    <!-- 1. Hero — full-bleed photography, editorial headline -->
     <HomeHero />
-
-    <!-- 2. Trust bar — 4 proof stats, floats below hero -->
     <HomeTrustBar />
-
-    <!-- 3. Services overview — 7-practice-area card grid -->
     <HomeServiceOverview />
+    <MediaHowItWorks />
+    <MediaCalculator />
 
-    <!-- 4. Why choose us — 2-col split: text + 4 differentiator tiles -->
-    <HomeWhyChooseUsSnippet />
+    <section
+      class="py-16 lg:py-24 text-white relative overflow-hidden"
+    >
+      <!-- Parallax image layer -->
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2400&q=80'); background-attachment: fixed;"
+        aria-hidden="true"
+      />
+      <!-- Dark overlay -->
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(135deg, rgba(10,10,10,0.93) 0%, rgba(17,17,17,0.82) 60%, rgba(10,10,10,0.90) 100%)"
+        aria-hidden="true"
+      />
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <p
+              class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-4"
+            >
+              Corporate solutions
+            </p>
+            <h2
+              class="font-heading text-3xl lg:text-4xl text-white leading-tight mb-5"
+            >
+              One media partner for your organization.
+            </h2>
+            <p class="text-gray-300 leading-relaxed mb-8">
+              Marketing, HR, procurement, corporate communications and
+              administration consolidate your media requirements under one
+              accountable commercial partner.
+            </p>
+            <SharedButton to="/corporate-solutions" size="lg"
+              >Talk to a Corporate Media Advisor</SharedButton
+            >
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div
+              v-for="t in teams"
+              :key="t"
+              class="border border-white/10 rounded-xl px-5 py-4 text-sm text-gray-300 flex items-center gap-3"
+            >
+              <Icon
+                name="lucide:check-circle-2"
+                class="w-4 h-4 text-orange-400 shrink-0"
+              />
+              {{ t }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- 5. Industries — dark ink section with clickable sector tags -->
-    <HomeIndustriesSnippet />
+    <MediaPlatformsCarousel />
 
-    <!-- 6. Mid-page CTA banner -->
-    <HomeCtaBanner />
-
-    <!-- 7. Featured insights — 3 editorial article cards -->
-    <HomeFeaturedInsight />
-
-    <!-- 8. Testimonial — large pull-quote -->
-    <HomeTestimonial />
-
-    <!-- 9. Final CTA — dark section, consultation booking -->
     <HomeFinalCta />
   </div>
 </template>
-
-<script setup lang="ts">
-useHead({
-  title: 'Willcoll Agencies | Business Advisory & Corporate Consulting in Kenya',
-  meta: [
-    {
-      name: 'description',
-      content: 'Willcoll Agencies helps Kenyan SMEs, corporates, and organizations achieve regulatory compliance, manage risk, and execute strategic growth. Book a free consultation today.'
-    },
-    { property: 'og:title', content: 'Willcoll Agencies | Business Advisory & Corporate Consulting in Kenya' },
-    { property: 'og:description', content: 'Enterprise-grade business advisory, sized and priced for growing organizations. One firm, from compliance to transformation to brand activation.' },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ]
-})
-</script>

@@ -52,4 +52,30 @@ useHead(() => {
     ],
   };
 });
+
+// Structured data — Organization identity across the site
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Willcoll Agencies',
+        url: 'https://willcoll.co.ke',
+        logo: 'https://willcoll.co.ke/images/logo/willcoll logo.webp',
+        description:
+          'Independent commercial media partner helping Kenyan businesses plan, place and manage advertising, recruitment, publications and corporate subscriptions.',
+        email: 'info@willcoll.co.ke',
+        telephone: '+254722550893',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '10th Floor, Pension Towers, Loita Street',
+          addressLocality: 'Nairobi',
+          addressCountry: 'KE',
+        },
+      }),
+    },
+  ],
+});
 </script>
