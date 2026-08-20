@@ -18,15 +18,7 @@ const status = ref<{ type: 'success' | 'error'; message: string } | null>(null)
 
 const config = useRuntimeConfig()
 const hasRecaptcha = computed(() => !!config.public.recaptchaSiteKey)
-const recaptchaToken = ref('')
 const recaptchaRef = ref<any>(null)
-
-const handleVerify = (token: string) => {
-  recaptchaToken.value = token
-}
-const handleExpired = () => {
-  recaptchaToken.value = ''
-}
 
 const { track } = useAnalytics()
 
@@ -34,6 +26,12 @@ const submit = async () => {
   status.value = null
   isSubmitting.value = true
   try {
+    // reCAPTCHA v3: invisible execute on submit
+    let recaptchaToken = ''
+    if (hasRecaptcha.value && recaptchaRef.value) {
+      recaptchaToken = (await recaptchaRef.value.execute('activate_staff')) ?? ''
+    }
+
     await $fetch('/api/activate-staff', {
       method: 'POST',
       body: {
@@ -46,18 +44,14 @@ const submit = async () => {
         employeeEmails: form.employeeEmails.trim(),
         instructions: form.instructions.trim(),
         website: form.website,
-        recaptchaToken: recaptchaToken.value,
+        recaptchaToken,
       },
     })
     status.value = { type: 'success', message: 'Thank you. Our team will coordinate the access activation and be in touch.' }
     track('staff_activation_submitted', { company: form.company })
     Object.assign(form, { company: '', referenceToken: '', contactName: '', email: '', phone: '', numberOfUsers: '', employeeEmails: '', instructions: '', website: '' })
-    recaptchaToken.value = ''
-    recaptchaRef.value?.reset()
   } catch (err: any) {
     status.value = { type: 'error', message: err?.data?.statusMessage || err?.statusMessage || err?.message || 'Unable to submit your request. Please try again.' }
-    recaptchaToken.value = ''
-    recaptchaRef.value?.reset()
   } finally {
     isSubmitting.value = false
   }
@@ -105,11 +99,11 @@ const submit = async () => {
     </div>
 
     <div class="sm:col-span-2">
-      <SharedRecaptcha ref="recaptchaRef" @verify="handleVerify" @expired="handleExpired" @error="handleExpired" />
+      <SharedRecaptcha ref="recaptchaRef" @verify="() => {}" />
     </div>
 
     <div class="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4">
-      <SharedButton type="submit" size="lg" :disabled="isSubmitting || (hasRecaptcha && !recaptchaToken)">{{ isSubmitting ? 'Submitting…' : 'Submit Activation Request' }}</SharedButton>
+      <SharedButton type="submit" size="lg" :disabled="isSubmitting">{{ isSubmitting ? 'Submitting…' : 'Submit Activation Request' }}</SharedButton>
       <p v-if="status" class="text-sm rounded-lg px-3 py-2" :class="status.type === 'success' ? 'text-green-700 bg-green-50' : 'text-red-700 bg-red-50'" role="status">{{ status.message }}</p>
     </div>
   </form>

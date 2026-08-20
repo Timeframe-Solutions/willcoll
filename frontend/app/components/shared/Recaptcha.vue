@@ -1,113 +1,89 @@
 <script setup lang="ts">
-import { ref, onMounted, defineEmits, defineExpose } from 'vue'
+import { onMounted } from 'vue'
 
 const config = useRuntimeConfig()
 const siteKey = config.public.recaptchaSiteKey
 
 const emit = defineEmits<{
   (e: 'verify', token: string): void
-  (e: 'expired'): void
   (e: 'error'): void
 }>()
 
-const recaptchaContainer = ref<HTMLElement | null>(null)
-let widgetId: number | null = null
-
-const initRecaptcha = () => {
-  if (typeof window === 'undefined') return
-  if (!siteKey) {
-    console.warn('reCAPTCHA site key is missing. Please set NUXT_PUBLIC_RECAPTCHA_SITE_KEY.')
-    return
-  }
-  
-  if (window.grecaptcha && window.grecaptcha.render && recaptchaContainer.value) {
-    try {
-      widgetId = window.grecaptcha.render(recaptchaContainer.value, {
-        sitekey: siteKey,
-        callback: (token: string) => {
-          emit('verify', token)
-        },
-        'expired-callback': () => {
-          emit('expired')
-        },
-        'error-callback': () => {
-          emit('error')
-        }
-      })
-    } catch (e) {
-      console.error('Error rendering reCAPTCHA:', e)
+// v3: load script with ?render=SITE_KEY (not ?render=explicit)
+const loadScript = (): Promise<void> => {
+  return new Promise((resolve) => {
+    if (typeof window === 'undefined') return resolve()
+    if (!siteKey) {
+      console.warn('reCAPTCHA site key is missing. Set NUXT_PUBLIC_RECAPTCHA_SITE_KEY.')
+      return resolve()
     }
-  }
+
+    if (window.grecaptcha?.execute) return resolve()
+
+    const existing = document.querySelector(`script[src*="recaptcha/api.js"]`)
+    if (existing) {
+      const wait = setInterval(() => {
+        if (window.grecaptcha?.execute) { clearInterval(wait); resolve() }
+      }, 50)
+      return
+    }
+
+    const script = document.createElement('script')
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
+    script.async = true
+    script.defer = true
+    script.onload = () => {
+      const wait = setInterval(() => {
+        if (window.grecaptcha?.execute) { clearInterval(wait); resolve() }
+      }, 50)
+    }
+    script.onerror = () => {
+      console.error('Failed to load reCAPTCHA v3 script.')
+      emit('error')
+      resolve()
+    }
+    document.head.appendChild(script)
+  })
 }
 
-const loadScript = () => {
-  if (typeof window === 'undefined') return
-  if (!siteKey) return
-
-  if (window.grecaptcha) {
-    initRecaptcha()
-    return
+// Call this from the form before submitting
+const execute = async (action = 'submit'): Promise<string | null> => {
+  if (!siteKey) return null
+  try {
+    await loadScript()
+    const token: string = await window.grecaptcha!.execute(siteKey, { action })
+    emit('verify', token)
+    return token
+  } catch (e) {
+    console.error('reCAPTCHA v3 execute failed:', e)
+    emit('error')
+    return null
   }
-
-  // Check if script is already added
-  const existingScript = document.querySelector('script[src*="recaptcha/api.js"]')
-  if (existingScript) {
-    // Wait for it to load
-    const interval = setInterval(() => {
-      if (window.grecaptcha) {
-        clearInterval(interval)
-        initRecaptcha()
-      }
-    }, 100)
-    return
-  }
-
-  const script = document.createElement('script')
-  script.src = 'https://www.google.com/recaptcha/api.js?render=explicit'
-  script.async = true
-  script.defer = true
-  script.onload = () => {
-    const checkGrecaptcha = setInterval(() => {
-      if (window.grecaptcha && window.grecaptcha.render) {
-        clearInterval(checkGrecaptcha)
-        initRecaptcha()
-      }
-    }, 50)
-  }
-  document.head.appendChild(script)
 }
 
 onMounted(() => {
-  loadScript()
+  if (siteKey) loadScript()
 })
 
-const reset = () => {
-  if (window.grecaptcha && widgetId !== null) {
-    window.grecaptcha.reset(widgetId)
-  }
-}
+defineExpose({ execute })
 
-defineExpose({
-  reset
-})
-
-// Declare types for grecaptcha
 declare global {
   interface Window {
     grecaptcha?: {
-      render: (element: HTMLElement, options: any) => number
-      reset: (widgetId?: number) => void
-      getResponse: (widgetId?: number) => string
+      // v3
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+      // v2 (kept for type safety only — not used here)
+      render?: (el: HTMLElement, opts: any) => number
+      reset?: (widgetId?: number) => void
+      getResponse?: (widgetId?: number) => string
     }
   }
 }
 </script>
 
 <template>
-  <div v-if="siteKey" class="recaptcha-wrapper my-4">
-    <div ref="recaptchaContainer"></div>
-  </div>
-  <div v-else class="text-xs text-red-500 my-2">
+  <!-- reCAPTCHA v3 is fully invisible — no widget rendered -->
+  <div v-if="!siteKey" class="text-xs text-red-500 my-2">
     reCAPTCHA configuration missing (NUXT_PUBLIC_RECAPTCHA_SITE_KEY)
   </div>
 </template>

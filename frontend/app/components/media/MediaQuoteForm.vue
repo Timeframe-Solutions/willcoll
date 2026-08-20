@@ -70,20 +70,18 @@ const budgetOptions = [
 
 const config = useRuntimeConfig()
 const hasRecaptcha = computed(() => !!config.public.recaptchaSiteKey)
-const recaptchaToken = ref('')
 const recaptchaRef = ref<any>(null)
-
-const handleVerify = (token: string) => {
-  recaptchaToken.value = token
-}
-const handleExpired = () => {
-  recaptchaToken.value = ''
-}
 
 const submit = async () => {
   status.value = null
   isSubmitting.value = true
   try {
+    // reCAPTCHA v3: execute invisibly on submit, get fresh token
+    let recaptchaToken = ''
+    if (hasRecaptcha.value && recaptchaRef.value) {
+      recaptchaToken = (await recaptchaRef.value.execute('contact_form')) ?? ''
+    }
+
     await $fetch('/api/contact', {
       method: 'POST',
       body: {
@@ -96,7 +94,7 @@ const submit = async () => {
         budget: form.budget,
         message: form.message.trim() + captureUtm(),
         website: form.website,
-        recaptchaToken: recaptchaToken.value,
+        recaptchaToken,
       },
     })
     status.value = {
@@ -115,8 +113,6 @@ const submit = async () => {
       message: '',
       website: '',
     })
-    recaptchaToken.value = ''
-    recaptchaRef.value?.reset()
   } catch (err: any) {
     status.value = {
       type: 'error',
@@ -126,8 +122,6 @@ const submit = async () => {
         err?.message ||
         'Unable to send your enquiry. Please try again.',
     }
-    recaptchaToken.value = ''
-    recaptchaRef.value?.reset()
   } finally {
     isSubmitting.value = false
   }
@@ -195,11 +189,11 @@ const submit = async () => {
       </div>
 
       <div class="sm:col-span-2">
-        <SharedRecaptcha ref="recaptchaRef" @verify="handleVerify" @expired="handleExpired" @error="handleExpired" />
+        <SharedRecaptcha ref="recaptchaRef" @verify="() => {}" />
       </div>
 
       <div class="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4">
-        <SharedButton type="submit" size="lg" :disabled="isSubmitting || (hasRecaptcha && !recaptchaToken)">
+        <SharedButton type="submit" size="lg" :disabled="isSubmitting">
           {{ isSubmitting ? 'Sending…' : submitLabel }}
         </SharedButton>
         <p v-if="status" class="text-sm rounded-lg px-3 py-2"
