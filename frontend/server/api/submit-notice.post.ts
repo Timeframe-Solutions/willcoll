@@ -22,6 +22,7 @@ const schema = z.object({
   noticeType: z.string().min(2),
   instructions: z.string().optional(),
   website: z.string().optional(),
+  recaptchaToken: z.string().optional(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -65,6 +66,9 @@ export default defineEventHandler(async (event) => {
   if (data.website && data.website.length > 0) {
     return { success: true }
   }
+
+  // Validate Google reCAPTCHA
+  await verifyRecaptcha(data.recaptchaToken)
 
   await sendSiteMail({
     subject: `Notice submission from ${data.companyName}`,

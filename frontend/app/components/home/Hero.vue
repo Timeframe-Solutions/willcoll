@@ -59,7 +59,7 @@
                     class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse flex-shrink-0"
                     aria-hidden="true"
                   />
-                  Media Partner
+                  Media &amp; Event Production Partner
                 </span>
               </div>
 
@@ -69,7 +69,7 @@
                 style="--delay: 80ms"
               >
                 Strategic
-                <span class="text-orange-500">Media Solutions</span>
+                <span class="text-orange-500">Media &amp; Events</span>
                 built&nbsp;for&nbsp;Growth.
               </h1>
 
@@ -78,8 +78,7 @@
                 class="hero-item text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed mb-9"
                 style="--delay: 160ms"
               >
-                Independent media planning, buying and execution for Kenyan
-                organizations.
+                Consolidated media planning, buying, and experiential event production for Kenyan organizations. One commercial partner, zero vendor hassle.
               </p>
 
               <!-- CTA row -->
@@ -91,13 +90,13 @@
                   to="/contact"
                   class="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-orange-500/20 w-full sm:w-auto"
                 >
-                  Get a Media Recommendation
+                  Get a Media Quote
                 </NuxtLink>
                 <NuxtLink
                   to="/contact"
                   class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-xl backdrop-blur-sm transition-all w-full sm:w-auto"
                 >
-                  Talk to a Media Advisor
+                  Plan Event Production
                 </NuxtLink>
               </div>
 
@@ -180,11 +179,11 @@ const revealed = ref(false);
 const trustStats = [
   { icon: "lucide:building-2", label: "Nairobi-based, Kenya-wide" },
   { icon: "lucide:shield-check", label: "Trusted commercial partner" },
-  { icon: "lucide:layers", label: "TV, Print & Digital" },
+  { icon: "lucide:layers", label: "TV, Print, Digital & Events" },
 ];
 
 const statCards = [
-  { value: "Multi-Platform", label: "TV, Print & Digital" },
+  { value: "Multi-Platform", label: "TV, Print, Digital & Events" },
   { value: "Kenya-wide", label: "Nairobi-Based" },
   { value: "1 Partner", label: "End-to-End Solutions" },
 ];

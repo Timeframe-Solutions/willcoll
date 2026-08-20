@@ -74,7 +74,7 @@
             </div>
           </transition>
         </div>
-        <SharedButton to="/contact" size="sm">Get a Media Recommendation</SharedButton>
+        <SharedButton to="/contact" size="sm">Get a Quote</SharedButton>
       </div>
 
       <button class="lg:hidden p-2" :class="isScrolled ? 'text-ink-900' : 'text-white'" @click="toggleMobileMenu" aria-label="Toggle menu">
@@ -117,7 +117,7 @@
             <div v-show="servicesOpen" class="pb-3 pl-2 space-y-1">
               <NuxtLink to="/services" class="block text-sm text-gray-600 py-1" @click="isMobileMenuOpen = false">All Services</NuxtLink>
               <NuxtLink v-for="s in services" :key="s.id" :to="s.to" class="block text-sm text-gray-600 py-1" @click="isMobileMenuOpen = false">
-                {{ s.navLabel }} — {{ s.name }}
+                {{ s.navLabel }}: {{ s.name }}
               </NuxtLink>
             </div>
           </div>
@@ -143,7 +143,7 @@
             </div>
           </div>
 
-          <SharedButton to="/contact" class="w-full mt-6" @click="isMobileMenuOpen = false">Get a Media Recommendation</SharedButton>
+          <SharedButton to="/contact" class="w-full mt-6" @click="isMobileMenuOpen = false">Get a Quote</SharedButton>
         </div>
       </div>
     </transition>

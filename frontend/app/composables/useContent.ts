@@ -100,13 +100,13 @@ export const useContent = () => {
 
   const comparison: { direct: ComparisonSet; willcoll: ComparisonSet } = {
     direct: {
-      title: 'Buying directly from multiple media houses',
+      title: 'Sourcing from multiple media houses & event vendors',
       points: [
         'Multiple contacts and separate quotes',
         'Fragmented procurement across suppliers',
         'Multiple invoices and reconciliations',
         'Internal coordination burden',
-        'Limited cross-platform comparison',
+        'Disconnect between media campaigns & physical events',
       ],
     },
     willcoll: {
@@ -116,7 +116,7 @@ export const useContent = () => {
         'Cross-platform recommendations',
         'Consolidated requirements and coordinated buying',
         'Procurement documentation',
-        'Centralized communication and ongoing management',
+        'Centralized management of both media & experiential events',
       ],
     },
   }
@@ -146,6 +146,11 @@ export const useContent = () => {
       components: ['Television', 'Digital', 'Print'],
     },
     {
+      name: 'Experiential & Event Production',
+      description: 'Consolidated physical production, professional staging, AV setup, and logistics.',
+      components: ['Staging & AV setup', 'Venue logistics', 'Fabrication', 'On-site execution'],
+    },
+    {
       name: 'Recruitment Campaign Package',
       description: 'Reach qualified candidates across trusted media.',
       components: ['Print', 'Digital'],
@@ -161,14 +166,9 @@ export const useContent = () => {
       components: ['Relevant publication channels'],
     },
     {
-      name: 'Executive / Corporate News Package',
-      description: 'Reliable news access for leadership and teams.',
-      components: ['Print', 'Digital subscriptions'],
-    },
-    {
       name: 'Custom Media Plan',
       description: 'A plan built around your specific objectives.',
-      components: ['Fully customized cross-platform campaign'],
+      components: ['Fully customized campaign & event production'],
     },
   ]
 
@@ -178,7 +178,7 @@ export const useContent = () => {
       icon: 'lucide:megaphone',
       name: 'Marketing Teams',
       body: 'Own brand and campaign goals that need media placed to reach the right people, within budget and on time.',
-      points: ['Media planning', 'Audience targeting', 'Campaign execution', 'Media mix and budget'],
+      points: ['Media planning', 'Audience targeting', 'Campaign & event execution', 'Media mix and budget'],
     },
     {
       icon: 'lucide:user-search',
@@ -189,14 +189,14 @@ export const useContent = () => {
     {
       icon: 'lucide:shopping-cart',
       name: 'Procurement Teams',
-      body: 'Keep media purchasing compliant and predictable with one commercial partner instead of several.',
+      body: 'Keep media & event purchasing compliant and predictable with one commercial partner instead of several.',
       points: ['Supplier coordination', 'Consolidated requirements', 'Documentation', 'Quotes and commercial workflow'],
     },
     {
       icon: 'lucide:newspaper',
       name: 'Corporate Communications',
-      body: 'Publish statutory, tender and corporate messages accurately and on schedule.',
-      points: ['Notices', 'Announcements', 'Publications', 'Compliance communication'],
+      body: 'Publish statutory notices and coordinate official corporate events and announcements.',
+      points: ['Notices & announcements', 'AGM event setups', 'Press conferences', 'Compliance communication'],
     },
     {
       icon: 'lucide:building-2',
@@ -210,11 +210,11 @@ export const useContent = () => {
   const insightTopics: InsightTopic[] = [
     { title: 'Media planning', description: 'How to plan and structure a media budget.', icon: 'lucide:map' },
     { title: 'Advertising', description: 'Choosing television, print and digital.', icon: 'lucide:megaphone' },
+    { title: 'Event production', description: 'AV setups, staging, fabrication, and venue logistics.', icon: 'lucide:sparkles' },
     { title: 'Recruitment advertising', description: 'Reaching the right candidates efficiently.', icon: 'lucide:user-search' },
     { title: 'Public notices', description: 'Statutory, tender and legal publication.', icon: 'lucide:newspaper' },
     { title: 'Corporate communications', description: 'Announcements and compliance communication.', icon: 'lucide:landmark' },
     { title: 'Procurement', description: 'Consolidating media purchasing.', icon: 'lucide:shopping-cart' },
-    { title: 'Corporate subscriptions', description: 'Digital and print access for teams.', icon: 'lucide:book-open' },
   ]
 
   // ---------------------------------------------------------------------------

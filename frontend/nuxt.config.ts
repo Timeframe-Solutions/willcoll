@@ -13,8 +13,11 @@ export default defineNuxtConfig({
     zohoUser: process.env.ZOHO_USER,
     zohoPass: process.env.ZOHO_PASS,
     contactEmail: process.env.CONTACT_EMAIL,
+    recaptchaSecretKey: process.env.NUXT_RECAPTCHA_SECRET_KEY || process.env.RECAPTCHA_SECRET_KEY,
 
-    public: {},
+    public: {
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
+    },
   },
 
   devtools: { enabled: true },

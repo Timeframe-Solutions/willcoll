@@ -55,6 +55,8 @@ const captureUtm = () => {
   return parts.length ? `\n\nSource: ${parts.join(', ')}` : ''
 }
 
+import { ref, reactive, watch, computed } from 'vue'
+
 const isSubmitting = ref(false)
 const status = ref<{ type: 'success' | 'error'; message: string } | null>(null)
 
@@ -65,6 +67,18 @@ const budgetOptions = [
   'Over KES 1,000,000',
   'Not sure yet',
 ]
+
+const config = useRuntimeConfig()
+const hasRecaptcha = computed(() => !!config.public.recaptchaSiteKey)
+const recaptchaToken = ref('')
+const recaptchaRef = ref<any>(null)
+
+const handleVerify = (token: string) => {
+  recaptchaToken.value = token
+}
+const handleExpired = () => {
+  recaptchaToken.value = ''
+}
 
 const submit = async () => {
   status.value = null
@@ -82,6 +96,7 @@ const submit = async () => {
         budget: form.budget,
         message: form.message.trim() + captureUtm(),
         website: form.website,
+        recaptchaToken: recaptchaToken.value,
       },
     })
     status.value = {
@@ -100,6 +115,8 @@ const submit = async () => {
       message: '',
       website: '',
     })
+    recaptchaToken.value = ''
+    recaptchaRef.value?.reset()
   } catch (err: any) {
     status.value = {
       type: 'error',
@@ -109,6 +126,8 @@ const submit = async () => {
         err?.message ||
         'Unable to send your enquiry. Please try again.',
     }
+    recaptchaToken.value = ''
+    recaptchaRef.value?.reset()
   } finally {
     isSubmitting.value = false
   }
@@ -175,8 +194,12 @@ const submit = async () => {
         <input id="qf-website" v-model="form.website" type="text" tabindex="-1" autocomplete="off" />
       </div>
 
+      <div class="sm:col-span-2">
+        <SharedRecaptcha ref="recaptchaRef" @verify="handleVerify" @expired="handleExpired" @error="handleExpired" />
+      </div>
+
       <div class="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4">
-        <SharedButton type="submit" size="lg" :disabled="isSubmitting">
+        <SharedButton type="submit" size="lg" :disabled="isSubmitting || (hasRecaptcha && !recaptchaToken)">
           {{ isSubmitting ? 'Sending…' : submitLabel }}
         </SharedButton>
         <p v-if="status" class="text-sm rounded-lg px-3 py-2"

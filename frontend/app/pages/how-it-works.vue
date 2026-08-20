@@ -6,16 +6,16 @@ useHead({
     {
       name: "description",
       content:
-        "How Willcoll helps you advertise, recruit, publish and subscribe four simple steps from enquiry to outcome.",
+        "How Willcoll helps you advertise, recruit, publish, subscribe, and execute event production in simple steps.",
     },
   ],
 });
 
 const afterSteps = [
   "We confirm your requirement and gather any details we need.",
-  "We recommend the right media option, package and campaign approach.",
+  "We recommend the right media or event production option, package, and approach.",
   "We prepare a quote or proposal for your review.",
-  "On approval, we coordinate placement, publication or subscription delivery.",
+  "On approval, we coordinate placement, publication, event production, or subscription delivery.",
 ];
 </script>
 
@@ -24,7 +24,7 @@ const afterSteps = [
     <SharedPageHero
       eyebrow="How it works"
       title="A Simple, Coordinated Process"
-      subtitle="From your first enquiry to a published campaign or delivered subscription, Willcoll manages the process end to end."
+      subtitle="From your first enquiry to a published campaign, coordinated event, or delivered subscription, Willcoll manages the process end to end."
     />
 
     <MediaHowItWorks />
@@ -57,10 +57,9 @@ const afterSteps = [
             Start with a single requirement.
           </h2>
           <p class="text-gray-300 mb-7 leading-relaxed">
-            Tell us what you need: an advert, a recruitment campaign, a notice
-            or a subscription. We'll handle the rest.
+            Tell us what you need: an advert, a recruitment campaign, a notice, an event setup, or a subscription. We'll handle the rest.
           </p>
-          <SharedButton to="/contact" size="lg">Get a Media Recommendation</SharedButton>
+          <SharedButton to="/contact" size="lg">Get a Quote</SharedButton>
         </div>
       </div>
     </section>

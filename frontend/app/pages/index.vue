@@ -50,9 +50,9 @@ useHead({
       <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-4">The problem</p>
-          <h2 class="font-heading text-3xl lg:text-5xl leading-tight mb-6">Media buying gets complicated fast.</h2>
+          <h2 class="font-heading text-3xl lg:text-5xl leading-tight mb-6">Media &amp; event production get complicated fast.</h2>
           <p class="text-gray-600 text-lg leading-relaxed">
-            When an organization buys media directly from multiple houses, the commercial work multiplies across contacts, quotes and invoices.
+            When an organization buys media or executes corporate events, managing multiple independent vendors multiplies quotes, invoices, and execution risks.
           </p>
         </div>
         <div class="space-y-3">
@@ -69,12 +69,17 @@ useHead({
     </section>
 
     <!-- Solution / workflow -->
-    <section class="py-16 lg:py-28 bg-gray-50" aria-label="The solution">
-      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <section class="relative py-16 lg:py-28 overflow-hidden bg-gray-50" aria-label="The solution">
+      <div
+        class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
+        style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=70'); background-attachment: fixed;"
+        aria-hidden="true"
+      />
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
         <SharedSectionHeading
           eyebrow="The solution"
-          heading="One commercial media partner."
-          subhead="Plan, compare, buy, execute, manage and report through a single accountable workflow."
+          heading="One commercial media &amp; event partner."
+          subhead="Plan, compare, buy, execute, manage and report your campaigns and event production through a single accountable workflow."
           :centered="true"
         />
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-12">
@@ -96,53 +101,47 @@ useHead({
     <HomeServiceOverview />
 
     <!-- Why Willcoll -->
-    <section class="relative py-16 lg:py-20 overflow-hidden" aria-label="Why Willcoll">
-      <div class="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=70"
-          alt=""
-          loading="lazy"
-          decoding="async"
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute inset-0 bg-ink-900/90" aria-hidden="true"></div>
-      </div>
+    <section class="relative py-16 lg:py-24 overflow-hidden text-white bg-slate-950" aria-label="Why Willcoll">
+      <div
+        class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-15"
+        style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=70'); background-attachment: fixed;"
+        aria-hidden="true"
+      />
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div>
-            <p class="text-orange-500 text-xs font-bold uppercase tracking-widest mb-3">Why Willcoll</p>
-            <h2 class="font-heading font-bold text-3xl lg:text-4xl leading-tight text-white mb-4">Why work with a media partner?</h2>
-            <p class="text-gray-300 leading-relaxed mb-8">Five reasons organizations consolidate their media with us instead of buying from each house directly.</p>
-            <ul class="space-y-5">
-              <li v-for="w in whyWillcoll" :key="w.title" class="flex items-start gap-4">
-                <SharedIconTile :icon="w.icon" size="sm" class="mt-0.5" />
-                <div>
-                  <h3 class="font-heading text-base text-white mb-1">{{ w.title }}</h3>
-                  <p class="text-sm text-gray-300 leading-relaxed">{{ w.body }}</p>
-                </div>
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <p class="text-orange-500 text-xs font-bold uppercase tracking-widest mb-3">Why Willcoll</p>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl leading-tight text-white mb-4">Why work with a media &amp; events partner?</h2>
+          <p class="text-gray-400 text-base leading-relaxed">Consolidate campaigns and production under a single partner instead of managing multiple vendors directly.</p>
+        </div>
+
+        <!-- 5 Differentiators Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
+          <div v-for="w in whyWillcoll" :key="w.title" class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col">
+            <SharedIconTile :icon="w.icon" size="sm" class="mb-4 shrink-0" />
+            <h3 class="font-heading text-base font-semibold text-white mb-2">{{ w.title }}</h3>
+            <p class="text-xs text-gray-300 leading-relaxed flex-1">{{ w.body }}</p>
+          </div>
+        </div>
+
+        <!-- Comparison side-by-side -->
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+            <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">{{ comparison.direct.title }}</h3>
+            <ul class="space-y-2.5">
+              <li v-for="p in comparison.direct.points" :key="p" class="flex gap-2.5 text-xs text-gray-300">
+                <Icon name="lucide:x" class="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5" />
+                <span class="leading-snug">{{ p }}</span>
               </li>
             </ul>
           </div>
-
-          <div class="space-y-4 lg:space-y-5">
-            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-              <h3 class="font-heading text-base text-white mb-4">{{ comparison.direct.title }}</h3>
-              <ul class="space-y-2.5">
-                <li v-for="p in comparison.direct.points" :key="p" class="flex gap-2.5 text-sm text-gray-300">
-                  <Icon name="lucide:x" class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
-                  <span class="leading-snug">{{ p }}</span>
-                </li>
-              </ul>
-            </div>
-            <div class="border-2 border-orange-500 rounded-2xl p-6 bg-orange-500/10">
-              <h3 class="font-heading text-base text-white mb-4">{{ comparison.willcoll.title }}</h3>
-              <ul class="space-y-2.5">
-                <li v-for="p in comparison.willcoll.points" :key="p" class="flex gap-2.5 text-sm text-gray-100">
-                  <Icon name="lucide:check-circle-2" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
-                  <span class="leading-snug">{{ p }}</span>
-                </li>
-              </ul>
-            </div>
+          <div class="border border-orange-500/30 rounded-2xl p-6 bg-orange-500/5">
+            <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-orange-400 mb-4">{{ comparison.willcoll.title }}</h3>
+            <ul class="space-y-2.5">
+              <li v-for="p in comparison.willcoll.points" :key="p" class="flex gap-2.5 text-xs text-gray-200">
+                <Icon name="lucide:check-circle-2" class="w-3.5 h-3.5 text-orange-500 shrink-0 mt-0.5" />
+                <span class="leading-snug">{{ p }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -153,7 +152,7 @@ useHead({
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
         <SharedSectionHeading
           eyebrow="Media packages"
-          heading="Starter media packages"
+          heading="Starter media &amp; event packages"
           subhead="A starting point for common objectives. Every package is scoped to your requirement and budget."
           :centered="true"
         />
@@ -213,27 +212,32 @@ useHead({
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
         <SharedSectionHeading
           eyebrow="Who it's for"
-          heading="Built for every team that buys media"
-          subhead="Marketing, HR, procurement, communications and administration all benefit from one media partner."
+          heading="Built for every team buying media &amp; events"
+          subhead="Marketing, HR, procurement, communications and administration all benefit from a consolidated media &amp; events partner."
           :centered="true"
           :dark="true"
         />
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-12">
           <NuxtLink
             v-for="d in departments"
             :key="d.name"
             to="/corporate-solutions"
-            class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-orange-400/40 hover:bg-white/10 transition-all"
+            class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-orange-500/50 hover:bg-white/10 transition-all flex flex-col"
           >
-            <SharedIconTile :icon="d.icon" size="md" class="mb-4" />
-            <h3 class="font-heading text-lg text-white mb-2">{{ d.name }}</h3>
-            <p class="text-sm text-gray-300 leading-relaxed mb-4">{{ d.body }}</p>
-            <ul class="space-y-1.5">
-              <li v-for="pt in d.points" :key="pt" class="flex gap-2 text-sm text-gray-300">
-                <Icon name="lucide:check" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
-                <span class="leading-relaxed">{{ pt }}</span>
-              </li>
-            </ul>
+            <div class="flex items-center gap-3 mb-3">
+              <Icon :name="d.icon" class="w-5 h-5 text-orange-500 shrink-0" />
+              <h3 class="font-heading text-sm font-semibold text-white leading-tight">{{ d.name }}</h3>
+            </div>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4 flex-1">{{ d.body }}</p>
+            <div class="border-t border-white/5 pt-3 mt-auto">
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  v-for="pt in d.points"
+                  :key="pt"
+                  class="text-[10px] text-gray-300 bg-white/5 px-2 py-0.5 rounded-md leading-none"
+                >{{ pt }}</span>
+              </div>
+            </div>
           </NuxtLink>
         </div>
       </div>
@@ -254,8 +258,8 @@ useHead({
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
         <SharedSectionHeading
           eyebrow="Insights"
-          heading="Guides to media buying in Kenya"
-          subhead="Practical guidance on planning, buying and managing media across television, print and digital."
+          heading="Guides to media &amp; events in Kenya"
+          subhead="Practical guidance on planning, buying and executing media and corporate events."
           :centered="true"
         />
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">

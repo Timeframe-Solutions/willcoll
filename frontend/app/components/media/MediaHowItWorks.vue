@@ -4,7 +4,7 @@
       <SharedSectionHeading
         eyebrow="How it works"
         heading="Four steps from enquiry to outcome"
-        subhead="A simple, coordinated process whether you are advertising, recruiting, publishing a notice or setting up a corporate subscription."
+        subhead="A simple, coordinated process whether you are advertising, recruiting, publishing a notice, setting up event production, or managing corporate subscriptions."
         :centered="true"
       />
 
@@ -43,22 +43,22 @@ const steps = [
   {
     icon: "lucide:clipboard-list",
     title: "Tell Us What You Need",
-    body: "Choose your advertising, recruitment, publication or subscription requirement.",
+    body: "Choose your advertising, recruitment, publication, event production, or subscription requirement.",
   },
   {
     icon: "lucide:layers",
     title: "We Build the Solution",
-    body: "Willcoll recommends the appropriate media option, package and campaign approach.",
+    body: "Willcoll recommends the appropriate media or event production option, package, and approach.",
   },
   {
     icon: "lucide:workflow",
     title: "We Coordinate Everything",
-    body: "We manage creative requirements, media placement, publication and subscription coordination.",
+    body: "We manage creative requirements, media placement, event execution, and subscription coordination.",
   },
   {
     icon: "lucide:check-circle-2",
     title: "You Get the Outcome",
-    body: "Your campaign runs, your notice reaches its audience, or your organization receives its subscription service.",
+    body: "Your campaign runs, your notice reaches its audience, your event is executed, or your organization receives its subscription service.",
   },
 ];
 </script>

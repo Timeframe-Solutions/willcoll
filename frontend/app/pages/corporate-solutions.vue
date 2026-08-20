@@ -1,12 +1,12 @@
 <script setup lang="ts">
 useScrollReveal();
 useHead({
-  title: "Corporate Media Solutions | Willcoll Agencies",
+  title: "Corporate Media & Event Solutions | Willcoll Agencies",
   meta: [
     {
       name: "description",
       content:
-        "One media partner for your organization consolidate advertising, recruitment, notices and subscriptions with Willcoll.",
+        "One partner for your organization's advertising, recruitment, public notices, event production, and corporate subscriptions.",
     },
   ],
 });
@@ -15,33 +15,33 @@ const teams = [
   {
     icon: "lucide:megaphone",
     team: "Marketing Teams",
-    body: "Advertising campaigns and media buying, planned and coordinated through one partner.",
+    body: "Advertising campaigns, media buying, and experiential events, planned and coordinated through one partner.",
   },
   {
     icon: "lucide:user-search",
     team: "HR Teams",
-    body: "Recruitment advertising and corporate subscriptions for your people.",
+    body: "Recruitment advertising, corporate subscriptions, and internal team events.",
   },
   {
     icon: "lucide:shopping-cart",
     team: "Procurement Teams",
-    body: "Centralized media purchasing and supplier coordination.",
+    body: "Centralized media and event vendor purchasing and supplier coordination.",
   },
   {
     icon: "lucide:newspaper",
     team: "Corporate Communications",
-    body: "Public notices, announcements and corporate publications.",
+    body: "Public notices, announcements, corporate publications, and official event setups.",
   },
   {
     icon: "lucide:building-2",
     team: "Administration",
-    body: "Office newspaper subscriptions and distribution.",
+    body: "Office newspaper subscriptions, distribution, and corporate meeting setups.",
   },
 ];
 
 const benefits = [
-  "One point of contact for multiple media needs",
-  "Consolidated quotes and coordinated delivery",
+  "One point of contact for multiple media and event needs",
+  "Consolidated quotes and coordinated execution",
   "Consistent service across departments",
   "A partner that scales with your organization",
 ];
@@ -51,8 +51,8 @@ const benefits = [
   <div>
     <SharedPageHero
       eyebrow="Corporate solutions"
-      title="One Media Partner for Your Organization"
-      subtitle="Consolidate your advertising, recruitment, publication and subscription requirements under a single commercial media partner."
+      title="One Media &amp; Event Partner for Your Organization"
+      subtitle="Consolidate your advertising, recruitment, publication, event production, and subscription requirements under a single commercial partner."
       bg-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80"
     />
 
@@ -60,7 +60,7 @@ const benefits = [
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
         <SharedSectionHeading
           eyebrow="Across your organization"
-          heading="Built for every department that buys media"
+          heading="Built for every department buying media &amp; events"
           :centered="true"
         />
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
@@ -98,9 +98,9 @@ const benefits = [
         </div>
         <div class="reveal-right">
           <MediaQuoteForm
-            submit-label="Talk to a Corporate Media Advisor"
-            title="Talk to a Corporate Media Advisor"
-            description="Tell us about your organization's media requirements and a corporate media advisor will respond."
+            submit-label="Talk to a Corporate Advisor"
+            title="Talk to a Corporate Advisor"
+            description="Tell us about your organization's media and event requirements and a corporate advisor will respond."
           />
         </div>
       </div>

@@ -74,7 +74,8 @@ export const useServices = () => {
         },
         {
           name: "Digital advertising",
-          description: "Advertising across trusted Kenyan digital news and media platforms.",
+          description:
+            "Advertising across trusted Kenyan digital news and media platforms.",
         },
         {
           name: "Media placement",
@@ -356,6 +357,74 @@ export const useServices = () => {
           question: "Can we start small and scale later?",
           answer:
             "Yes. We structure packages around your current needs and can add users or deliveries as your organization grows.",
+        },
+      ],
+    },
+    {
+      id: "experiential-events",
+      slug: "experiential-events",
+      navLabel: "Experiential & Events",
+      name: "Experiential & Event Production Execution",
+      subhead:
+        "Physical infrastructure, AV technical setup, and logistics management consolidated into a single managed workflow.",
+      outcome:
+        "End-to-end physical infrastructure, technical setup, and logistics management for corporate events across Kenya.",
+      description:
+        "Willcoll Agencies provides end-to-end physical infrastructure, technical setup, and logistics management for corporate events across Kenya. Operating as an outsourced commercial partner, we consolidate the entire event production supply chain into a single managed workflow. Instead of an organization directly sourcing, vetting, and managing separate event vendors, we act as the single point of contract, execution, and billing.",
+      coreMessage:
+        "Consolidate your event production, Audio-Visual, and staging under a single contract.",
+      icon: "lucide:sparkles",
+      whoIsFor:
+        "Corporate communications teams, marketing managers, HR officers, and procurement directors coordinating events, launches, or annual general meetings.",
+      ctaText: "Get a Production Quote",
+      to: "/services/experiential-events",
+      bgImage:
+        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1800&q=80",
+      accentColor: "#E53E3E",
+      problem: [
+        "Fragmented Procurement: Sourcing and managing 5 to 15 independent suppliers (AV, fabrication, catering, stage hands) is administratively heavy.",
+        "Operational Unreliability: High risks of vendor delays, technical equipment failure, or substandard execution due to poor communication between independent vendors.",
+        "Compliance & Billing Bottlenecks: Onboarding multiple local vendors, tracking compliance documents, and reconciling numerous invoices causes procurement bottlenecks.",
+      ],
+      solution:
+        "Willcoll acts as your outsourced commercial partner, consolidating the entire production supply chain. We handle the entire physical and technical deployment required to execute corporate functions, marketing activations, and statutory meetings under strict, legally binding Service Level Agreements and one unified invoice.",
+      subServices: [
+        {
+          name: "Technical Production & AV Management",
+          description:
+            "Sourcing, configuring, and operating professional sound systems, LED screens, stage lighting, multi-camera live-streaming setups, and secure translation equipment.",
+        },
+        {
+          name: "Fabrication & Branding Environment Build",
+          description:
+            "Managing the design, construction, and setup of physical event infrastructure, including custom exhibition booths, product launch stages, media backdrops, and experiential brand installations.",
+        },
+        {
+          name: "Venue Logistics & Hospitality Coordination",
+          description:
+            "Managing vendor relations for venue setup, custom corporate catering, VIP hospitality protocols, seating layouts, and transport logistics.",
+        },
+        {
+          name: "On-Site Stage & Program Management",
+          description:
+            "Providing technical floor managers, stage directors, sound engineers, and technicians to run the event schedule without internal team intervention.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How does Willcoll simplify event billing?",
+          answer:
+            "Instead of paying and managing multiple vendors, you sign a single contract with Willcoll. We source and manage all sub-contractors and issue one consolidated invoice.",
+        },
+        {
+          question: "What types of events do you handle?",
+          answer:
+            "We handle the physical, technical, and logistical execution of corporate functions, product launches, marketing activations, AGMs, and statutory meetings across Kenya.",
+        },
+        {
+          question: "How do you ensure service quality and reliability?",
+          answer:
+            "We work with a pre-verified network of specialized AV and fabrication sub-contractors, bound by strict Service Level Agreements (SLAs) and managed by our on-site stage managers.",
         },
       ],
     },

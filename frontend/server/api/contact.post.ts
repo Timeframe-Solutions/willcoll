@@ -10,6 +10,7 @@ const schema = z.object({
   budget: z.string().optional(),
   message: z.string().min(10),
   website: z.string().optional(),
+  recaptchaToken: z.string().optional(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -29,6 +30,9 @@ export default defineEventHandler(async (event) => {
   if (data.website && data.website.length > 0) {
     return { success: true }
   }
+
+  // Validate Google reCAPTCHA
+  await verifyRecaptcha(data.recaptchaToken)
 
   await sendSiteMail({
     subject: `Website enquiry from ${data.fullName}`,

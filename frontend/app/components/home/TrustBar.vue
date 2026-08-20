@@ -9,29 +9,29 @@
           <p
             class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-3"
           >
-            Media Partner
+            Media &amp; Event Production
           </p>
           <h2
             class="font-heading text-2xl lg:text-3xl text-ink-900 leading-tight mb-3"
           >
-            One partner across Kenya's trusted media.
+            One partner for media campaigns &amp; event setups.
           </h2>
           <p class="text-gray-500 leading-relaxed">
-            Independent planning, buying and coordination across the television,
-            print and digital platforms your audience engages with.
+            Independent media planning and buying across leading networks alongside professional staging, AV technical execution, and logistics management across Kenya.
           </p>
         </div>
         <div>
           <p
             class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4"
           >
-            Media platforms we work with
+            Capabilities
           </p>
-          <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 rounded-lg border border-gray-200 text-ink-900 text-sm font-semibold">Television</span>
-            <span class="px-4 py-2 rounded-lg border border-gray-200 text-ink-900 text-sm font-semibold">Print</span>
-            <span class="px-4 py-2 rounded-lg border border-gray-200 text-ink-900 text-sm font-semibold">Digital</span>
-            <span class="px-4 py-2 rounded-lg border border-gray-200 text-ink-900 text-sm font-semibold">Radio</span>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-lg border border-gray-200 text-ink-900 text-xs font-semibold">Television</span>
+            <span class="px-3.5 py-1.5 rounded-lg border border-gray-200 text-ink-900 text-xs font-semibold">Print</span>
+            <span class="px-3.5 py-1.5 rounded-lg border border-gray-200 text-ink-900 text-xs font-semibold">Digital</span>
+            <span class="px-3.5 py-1.5 rounded-lg border border-gray-200 text-ink-900 text-xs font-semibold">Event Staging</span>
+            <span class="px-3.5 py-1.5 rounded-lg border border-gray-200 text-ink-900 text-xs font-semibold">AV Production</span>
           </div>
         </div>
       </div>

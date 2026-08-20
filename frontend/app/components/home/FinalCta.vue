@@ -9,11 +9,11 @@
         Tell us what you're trying to achieve.
       </h2>
       <p class="text-white/65 text-base lg:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-        We'll help you determine the right media approach for your objective, audience and budget.
+        We'll help you find the right media mix or coordinate your corporate event production.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <SharedButton to="/contact" size="lg">Get a Media Recommendation</SharedButton>
-        <SharedButton to="/contact" variant="outline-white" size="lg">Talk to a Media Advisor</SharedButton>
+        <SharedButton to="/contact" size="lg">Get a Media Quote</SharedButton>
+        <SharedButton to="/contact" variant="outline-white" size="lg">Plan Event Production</SharedButton>
       </div>
     </div>
   </section>

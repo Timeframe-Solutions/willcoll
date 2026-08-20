@@ -48,7 +48,7 @@ const { getServiceById } = useServices()
 
 const layers: { label: string; serviceIds: string[] }[] = [
   { label: 'Media Strategy', serviceIds: ['media-buying-advisory'] },
-  { label: 'Media Execution', serviceIds: ['advertise', 'recruit', 'publish'] },
+  { label: 'Media Execution', serviceIds: ['advertise', 'recruit', 'publish', 'experiential-events'] },
   { label: 'Media Management', serviceIds: ['subscribe'] },
 ]
 
